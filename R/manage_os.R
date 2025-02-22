@@ -41,134 +41,123 @@
 #'
 #' @export
 occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
-  if(verbose == TRUE){
-    print("Relizando limpeza de arquivos.")
-  }
-  remove_files()
   system_arch_1 = Sys.info()
-  if(verbose == TRUE){
-    print("Carregando pacotes fortran...")
-  }
   if(system_arch_1["sysname"] == "Linux"||system_arch_1["sysname"] == "Darwin"){
-    dyn.load(fs::path_package("fibos","libs","fibos.so"))
     if(verbose == TRUE){
-      print("fibos.so carregado.")
-    }
-  } else{
-    path_lib = fs::path("libs",.Platform$r_arch)
-    dyn.load(fs::path_package("fibos",path_lib,"fibos.dll"))
-    if(verbose == TRUE){
-      print("fibos.dll carregado.")
-    }
-  }
-  source_path = fs::path_real(".")
-  change = FALSE
-  if(fs::path_ext(pdb) ==  ""){
-    arq_aux = fs::path_ext_set(pdb,"pdb")
-    if(fs::file_exists(arq_aux)){
-      fs::file_delete(arq_aux)
-    }
-    name_pdb = fs::path_ext_set(pdb,"pdb")
-  }else{
-    name_pdb = fs::path_file(pdb)
-    if(fs::file_exists(pdb) == FALSE){
-      stop("File not Found: ", name_pdb)
-    }
-    pdb = fs::path_abs(pdb)
-    change = TRUE
-  }
-  if(!fs::dir_exists("fibos_files")){
-    fs::dir_create("fibos_files")
-  }
-  withr::with_tempdir({
-    if(verbose == TRUE){
-      print("Inicio do WD temporario...")
-    }
-    dest_temp = fs::path_real(".")
-    if(change == TRUE){
-      if(!fs::file_exists(pdb)){
-        fs::file_copy(pdb,dest_temp)
-      }
-      if(verbose == TRUE){
-        print("PDB copiado...")
-      }
-    }
-    meth = 0
-    path = fs::path_package("fibos","extdata","radii")
-    fs::file_copy(path, dest_temp)
-    if(verbose == TRUE){
-      print("radii copiado")
-    }
-    interval = clean_pdb(pdb)
-    if(verbose == TRUE){
-      print("Reestruturação do PDB")
-    }
-    iresf = interval[1]
-    iresl = interval[2]
-    if(toupper(method) == "OS"){
-      meth = 1
-    }
-    if(toupper(method) == "FIBOS"){
-      meth = 2
-    }
-    if(!(toupper(method) == "OS")&!(toupper(method) == "FIBOS")){
-      stop("Wrong Method")
-    }
-    if(verbose == TRUE){
-      print("Inicio da série de cálculos.")
-    }
-    execute(1, iresl, meth, verbose)
-    if(verbose == TRUE){
-      print("Descarregando Fortran.")
-    }
-    if(system_arch_1["sysname"] == "Linux"||system_arch_1["sysname"] == "Darwin"){
-      dyn.unload(fs::path_package("fibos","libs","fibos.so"))
-      if(verbose == TRUE){
-        print("Descarregando fibos.so.")
-      }
-    } else{
-      path_lib = fs::path("libs",.Platform$r_arch)
-      dyn.unload(fs::path_package("fibos",path_lib,"fibos.dll"))
-      if(verbose == TRUE){
-        print("Descarregando fibos.dll.")
-      }
-    }
-    if(verbose == TRUE){
-      print("Removendo arquivos.")
+      print("Relizando limpeza de arquivos.")
     }
     remove_files()
     if(verbose == TRUE){
-      print("Renomeando arquivos.")
+      print("Carregando pacotes fortran...")
     }
-    name_prot = change_files(name_pdb)
-    delete_pdb = fs::dir_ls(dest_temp,glob = "*.pdb")
-    fs::file_delete(delete_pdb)
-    if(verbose == TRUE){
-      print("PDB deletado.")
+      dyn.load(fs::path_package("fibos","libs","fibos.so"))
+      if(verbose == TRUE){
+        print("fibos.so carregado.")
+      }
+    source_path = fs::path_real(".")
+    change = FALSE
+    if(fs::path_ext(pdb) ==  ""){
+      arq_aux = fs::path_ext_set(pdb,"pdb")
+      if(fs::file_exists(arq_aux)){
+        fs::file_delete(arq_aux)
+      }
+      name_pdb = fs::path_ext_set(pdb,"pdb")
+    }else{
+      name_pdb = fs::path_file(pdb)
+      if(fs::file_exists(pdb) == FALSE){
+        stop("File not Found: ", name_pdb)
+      }
+      pdb = fs::path_abs(pdb)
+      change = TRUE
     }
-    final_dest = fs::path(source_path,"fibos_files")
-    if(verbose == TRUE){
-      print("Copiando .srf")
+    if(!fs::dir_exists("fibos_files")){
+      fs::dir_create("fibos_files")
     }
-    copy_files = fs::dir_ls(dest_temp,glob = "*.srf")
-    if(verbose == TRUE){
-      print("SRF copiado")
-    }
-    fs::file_copy(copy_files,final_dest, overwrite = TRUE)
-    if(verbose == TRUE){
-      print("Copiando .lst")
-    }
-    copy_files = fs::dir_ls(dest_temp,glob = "*.lst")
-    fs::file_copy(copy_files,final_dest, overwrite = TRUE)
-    if(verbose == TRUE){
-      print("Definindo name_prot")
-    }
-    name_prot = fs::path(final_dest,name_prot)
-    if(verbose == TRUE){
-      print("Retornando tabela")
-    }
-    return(read_prot(name_prot))
-  })
+    withr::with_tempdir({
+      if(verbose == TRUE){
+        print("Inicio do WD temporario...")
+      }
+      dest_temp = fs::path_real(".")
+      if(change == TRUE){
+        if(!fs::file_exists(pdb)){
+          fs::file_copy(pdb,dest_temp)
+        }
+        if(verbose == TRUE){
+          print("PDB copiado...")
+        }
+      }
+      meth = 0
+      path = fs::path_package("fibos","extdata","radii")
+      fs::file_copy(path, dest_temp)
+      if(verbose == TRUE){
+        print("radii copiado")
+      }
+      interval = clean_pdb(pdb)
+      if(verbose == TRUE){
+        print("Reestruturação do PDB")
+      }
+      iresf = interval[1]
+      iresl = interval[2]
+      if(toupper(method) == "OS"){
+        meth = 1
+      }
+      if(toupper(method) == "FIBOS"){
+        meth = 2
+      }
+      if(!(toupper(method) == "OS")&!(toupper(method) == "FIBOS")){
+        stop("Wrong Method")
+      }
+      if(verbose == TRUE){
+        print("Inicio da série de cálculos.")
+      }
+      execute(1, iresl, meth, verbose)
+      if(verbose == TRUE){
+        print("Descarregando Fortran.")
+      }
+      dyn.unload(fs::path_package("fibos","libs","fibos.so"))
+      if(verbose == TRUE){
+          print("Descarregando fibos.so.")
+        }
+      if(verbose == TRUE){
+        print("Removendo arquivos.")
+      }
+      remove_files()
+      if(verbose == TRUE){
+        print("Renomeando arquivos.")
+      }
+      name_prot = change_files(name_pdb)
+      delete_pdb = fs::dir_ls(dest_temp,glob = "*.pdb")
+      fs::file_delete(delete_pdb)
+      if(verbose == TRUE){
+        print("PDB deletado.")
+      }
+      final_dest = fs::path(source_path,"fibos_files")
+      if(verbose == TRUE){
+        print("Copiando .srf")
+      }
+      copy_files = fs::dir_ls(dest_temp,glob = "*.srf")
+      if(verbose == TRUE){
+        print("SRF copiado")
+      }
+      fs::file_copy(copy_files,final_dest, overwrite = TRUE)
+      if(verbose == TRUE){
+        print("Copiando .lst")
+      }
+      copy_files = fs::dir_ls(dest_temp,glob = "*.lst")
+      fs::file_copy(copy_files,final_dest, overwrite = TRUE)
+      if(verbose == TRUE){
+        print("Definindo name_prot")
+      }
+      name_prot = fs::path(final_dest,name_prot)
+      if(verbose == TRUE){
+        print("Retornando tabela")
+      }
+      return(read_prot(name_prot))
+    })
+  }
+  else{
+    execute_windows(pdb, method)
+  }
 }
 
 remove_files = function(){
