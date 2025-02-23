@@ -42,6 +42,9 @@
 #'
 #' @export
 occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
+  iresl = 0
+  meth = 1
+  verbose = FALSE
   system_arch_1 = Sys.info()
   if(system_arch_1["sysname"] == "Linux"||system_arch_1["sysname"] == "Darwin"){
     if(verbose == TRUE){
