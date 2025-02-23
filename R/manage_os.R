@@ -102,7 +102,7 @@ occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
     }
     interval = clean_pdb(pdb)
     if(verbose == TRUE){
-      print("Reestruturação do PDB")
+      print("Reestruturacao do PDB")
     }
     iresf = interval[1]
     iresl = interval[2]
@@ -116,7 +116,7 @@ occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
       stop("Wrong Method")
     }
     if(verbose == TRUE){
-      print("Inicio da série de cálculos.")
+      print("Inicio da serie de calculos.")
     }
     execute(1, iresl, meth, verbose)
     if(verbose == TRUE){
