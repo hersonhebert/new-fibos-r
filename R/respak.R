@@ -21,11 +21,11 @@
 #' @author Carlos Silveira.
 #'
 #' @references
-#' Fleming PJ, Richards FM. Protein packing: Dependence on protein size, secondary structure and amino acid composition. J Mol Biol 2000;299:487-98.(\url{https://doi.org/10.1006/jmbi.2000.3750})
+#' Fleming PJ, Richards FM. Protein packing: Dependence on protein size, secondary structure and amino acid composition. J Mol Biol 2000;299:487-98.(\doi{10.1006/jmbi.2000.3750})
 #'
-#' Pattabiraman N, Ward KB, Fleming PJ. Occluded molecular surface: Analysis of protein packing. J Mol Recognit 1995;8:334-44. (\url{https://doi.org/10.1002/jmr.300080603})
+#' Pattabiraman N, Ward KB, Fleming PJ. Occluded molecular surface: Analysis of protein packing. J Mol Recognit 1995;8:334-44. (\doi{10.1002/jmr.300080603})
 #'
-#' Herson H. M. Soares, Joao P. R. Romanelli, Patrick J. Fleming, Carlos H. da Silveira. bioRxiv, 2024.11.01.621530. (\url{https://doi.org/10.1101/2024.11.01.621530})
+#' Herson H. M. Soares, Joao P. R. Romanelli, Patrick J. Fleming, Carlos H. da Silveira. bioRxiv, 2024.11.01.621530. (\doi{10.1101/2024.11.01.621530})
 #'
 #' @examples
 #' library(fibos)
