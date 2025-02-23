@@ -21,5 +21,6 @@ Imports:
     stringr,
     tidyr,
     withr,
-    fs
+    fs,
+    devtools
 NeedsCompilation: yes
