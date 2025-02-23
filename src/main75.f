@@ -45,10 +45,11 @@ c********************************************************************
        integer resnum(maxres), nchains, aa_per_chain,
      & canum(maxres), natm      !see read_coords
        integer iresf,iresl      !first and last residue to calculate
-       integer naa                      !number of residues
+       integer::naa = 0                      !number of residues
        integer ires                     !residue of interest
        integer number
-       integer kanala, kanalr
+       integer::kanala = 110
+       integer kanalr
        integer max
 
        real x(3,maxat)          !see read_coords
@@ -169,7 +170,9 @@ c--------------------------------------------------------------------
 
             integer ires
             integer resnum(maxres)
-            integer natm, I, stat
+            integer natm, I
+            integer::stat = 0
+            integer::kanala = 110
 
             character atype(maxat)*4, restype(maxat)*3      !read_coords
             character aarestype(maxres)*3
@@ -243,9 +246,11 @@ c--------------------------------------------------------------------
        integer resnum(maxres), nchains, aa_per_chain,
      & canum(maxres), natm      !see read_coords
        integer iresf,iresl      !first and last residue to calculate
-       integer naa                      !number of residues
+       integer::naa = 0                      !number of residues
        integer ires                     !residue of interest
-       integer number, stat
+       integer number
+       integer::stat = 0
+       integer::kanala = 110
 
        real x(3,maxat)          !see read_coords
        double precision a(maxat)
