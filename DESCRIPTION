@@ -22,5 +22,6 @@ Imports:
     tidyr,
     withr,
     fs,
-    devtools
+    devtools,
+    reticulate
 NeedsCompilation: yes

@@ -33,8 +33,13 @@
 #' # Calculate FIBOS per atom and create .srf files in fibos_files folder
 #' pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
 #'
+#' # Calculate OSP metric per residue from .srf file in fibos_files folder
+#' pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
+#'
 #' @export
 osp = function(file){
+  system_arch_1 = Sys.info()
+  if(system_arch_1["sysname"] == "Linux"||system_arch_1["sysname"] == "Darwin"){
   wd = fs::path_wd()
   if(!fs::dir_exists("fibos_files")){
     fs::dir_create("fibos_files")
@@ -57,21 +62,9 @@ osp = function(file){
       fs::file_move(file,"prot.srf")
       file = "prot.srf"
     }
-    system_arch_1 = Sys.info()
-    if(system_arch_1["sysname"] == "Linux"||system_arch_1["sysname"] == "Darwin"){
-      #dyn.load(system.file("libs", "fibos.so", package = "fibos"))
       dyn.load(fs::path_package("fibos","libs","fibos.so"))
-    } else{
-      path_lib = fs::path("libs",.Platform$r_arch)
-      dyn.load(fs::path_package("fibos",path_lib,"fibos.dll"))
-    }
     .Fortran("respak", PACKAGE = "fibos")
-    if(system_arch_1["sysname"] == "Linux"||system_arch_1["sysname"] == "Darwin"){
-      dyn.unload(fs::path_package("fibos","libs","fibos.so"))
-    } else{
-      path_lib = fs::path("libs",.Platform$r_arch)
-      dyn.unload(fs::path_package("fibos",path_lib,"fibos.dll"))
-    }
+    dyn.unload(fs::path_package("fibos","libs","fibos.so"))
     osp_data = readr::read_table("prot.pak",show_col_types = FALSE)
     name_prot = fs::path_file(name_prot)
     name_prot = fs::path_ext_remove(name_prot)
@@ -85,8 +78,9 @@ osp = function(file){
     fs::file_delete(file)
     return(osp_data)
   }
+  }
   else{
-    return(NULL)
+    osp_windows(file)
   }
 }
 
