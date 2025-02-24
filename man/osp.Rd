@@ -28,9 +28,6 @@ library(fibos)
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
 pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
 
-# Calculate OSP metric per residue from .srf file in fibos_files folder
-pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
-
 }
 \references{
 Fleming PJ, Richards FM. Protein packing: Dependence on protein size, secondary structure and amino acid composition. J Mol Biol 2000;299:487-98.(\doi{10.1006/jmbi.2000.3750})
