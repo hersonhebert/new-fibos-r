@@ -68,10 +68,10 @@ clean = function(name_file){
                t=TRUE
              }
            }
-           if(i==0){
-             line=paste(substr(line,1,24)," 1",substr(line,27,100),sep="")
-             i = 1
-           }
+           #if(i==0){
+          #   line=paste(substr(line,1,24)," 1",substr(line,27,100),sep="")
+          #   i = 1
+          # }
            if("HSD" %in% line){
              line = gsub("HSD","HIS",line)
            }
