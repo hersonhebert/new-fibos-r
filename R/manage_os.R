@@ -158,7 +158,7 @@ occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
     })
   }
   else{
-    execute_windows(pdb,method)
+    message("Not supported")
   }
 }
 
