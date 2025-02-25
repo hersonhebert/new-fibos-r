@@ -77,7 +77,7 @@ osp = function(file){
   }
   }
   else{
-    message("Not supported")
+    osp_windows(file)
   }
 }
 
