@@ -35,13 +35,14 @@
 #' library(fibos)
 #'
 #' # Calculate FIBOS per atom and create .srf files in fibos_files folder
-#' pdb_fibos <- occluded_surface("1fib", method = "FIBOS")
+#' pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
 #' 
 #' # Calculate OSP metric per residue from .srf file in fibos_files folder
-#' pdb_osp <- osp(fs::path("fibos_files","prot_1fib.srf"))
+#' pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
 #'
 #' @export
 occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
+  verbose = FALSE
   if(verbose == TRUE){
     print("Relizando limpeza de arquivos.")
   }
