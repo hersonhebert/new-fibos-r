@@ -32,6 +32,7 @@ Occluded Surface (OS) (Pattabiraman et al. 1995) method distributes dots (repres
 For more details, see (Fleming et al, 2000) and (Soares, et al, 2024)
 }
 \examples{
+\donttest{
 library(fibos)
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
@@ -39,6 +40,7 @@ pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
 
 # Calculate OSP metric per residue from .srf file in fibos_files folder
 pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
+}
 
 }
 \references{

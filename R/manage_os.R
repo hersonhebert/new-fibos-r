@@ -1,5 +1,6 @@
 #' @title Occluded Surface (OS)
 #' @name occluded_surface
+#' 
 #'
 #' @description {The Occluded Surface (OS) algorithm is a widely used approach for analyzing atomic packing in biomolecules. Here, we introduce FIBOS, an R and Python package that extends the OS methodology with enhancements. The homonymous function occluded_surface calculates OS per atom.}
 #'
@@ -32,6 +33,7 @@
 #' Herson H. M. Soares, Joao P. R. Romanelli, Patrick J. Fleming, Carlos H. da Silveira. bioRxiv, 2024.11.01.621530. (\doi{10.1101/2024.11.01.621530})
 #'
 #' @examples
+#' \donttest{
 #' library(fibos)
 #'
 #' # Calculate FIBOS per atom and create .srf files in fibos_files folder
@@ -39,10 +41,12 @@
 #' 
 #' # Calculate OSP metric per residue from .srf file in fibos_files folder
 #' pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
+#' }
 #'
 #' @export
 occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
   verbose = FALSE
+  meth = as.integer(2)
   if(verbose == TRUE){
     print("Relizando limpeza de arquivos.")
   }
@@ -95,7 +99,6 @@ occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
         print("PDB copiado...")
       }
     }
-    meth = 0
     path = fs::path_package("fibos","extdata","radii")
     fs::file_copy(path, dest_temp)
     if(verbose == TRUE){
@@ -108,16 +111,19 @@ occluded_surface = function(pdb, method = "FIBOS", verbose = FALSE){
     iresf = interval[1]
     iresl = interval[2]
     if(toupper(method) == "OS"){
-      meth = 1
+      meth = as.integer(1)
     }
     if(toupper(method) == "FIBOS"){
-      meth = 2
+      meth = as.integer(2)
     }
     if(!(toupper(method) == "OS")&!(toupper(method) == "FIBOS")){
       stop("Wrong Method")
     }
     if(verbose == TRUE){
       print("Inicio da serie de calculos.")
+    }
+    if(is.nan(iresl) || is.nan(meth) || is.nan(verbose)){
+      stop("PDB error")
     }
     execute(1, iresl, meth, verbose)
     if(verbose == TRUE){
@@ -206,5 +212,8 @@ remove_files = function(){
   }
   if(fs::file_exists("radii")){
     fs::file_delete("radii")
+  }
+  if(fs::file_exists(fs::path("fibos_files","file.srf"))){
+    fs::file_delete(fs::path("fibos_files","file.srf"))
   }
 }

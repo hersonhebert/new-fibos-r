@@ -431,7 +431,7 @@ c Scroll to first atom in PDB file.
        do while (scrollerror)
          call pdbscroll (lunit, 'ATOM', scrollerror)
          if (scrollerror) then
-           write(6,20)
+C           write(6,20)
            close (lunit)
          else
 c Start reading atoms
@@ -442,7 +442,7 @@ c Start reading atoms
              read(lunit,5,end=100)line
              if (line(1:4) .ne. 'ATOM') then
                if (line(1:3) .eq. 'TER') then
-                 write(6,30)
+C                 write(6,30)
                  goto 90
                else if (line(1:3) .eq. 'END') then
 c                 write(6,35)
@@ -464,7 +464,7 @@ c Look for CA
                end if
                aarestype(resnum(n))=restype(n) !3-letter code
                if (naa .gt. maxres)then
-                 write(6,25)
+C                 write(6,25)
                  goto 999
                end if
                if (chain(n) .ne. oldchain) then

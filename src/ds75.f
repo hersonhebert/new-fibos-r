@@ -847,15 +847,15 @@ C     FIRST THE integer COORDINATE ARRAYS
               ICO(K,I) = icol + 1
 
         IF (ICO(K,I) .LT. 1)then
-        write(*,*)'CUBE COORDINATE TOO SMALL'
-        write(*,*)'Total Atoms=',natoms
+c        write(*,*)'CUBE COORDINATE TOO SMALL'
+c        write(*,*)'Total Atoms=',natoms
 
 	do J=1,natoms
-        write(*,'(a4,i4,a8,3f15.10)')'at=',J,
-     & 'CO(K,J)=',CO(1,J),CO(2,J),CO(3,J)
+c        write(*,'(a4,i4,a8,3f15.10)')'at=',J,
+c     & 'CO(K,J)=',CO(1,J),CO(2,J),CO(3,J)
         end do!j
-        write(*,'(a12,3f15.7,a7,f10.6)')'COMIN(K)=',COMIN,
-     & 'WIDTH=',WIDTH
+c        write(*,'(a12,3f15.7,a7,f10.6)')'COMIN(K)=',COMIN,
+c     & 'WIDTH=',WIDTH
         STOP
         end if
 
@@ -1021,7 +1021,7 @@ C ...................................................................
 	call GENUN01(RP,UP,ARUP,TETP,NUP)    !
 
 C * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-        if(CONTROL)write(*,*)'MS: precalc finish'
+c        if(CONTROL)write(*,*)'MS: precalc finish'
 
     	idot=0
         idot_g=0
@@ -1038,7 +1038,7 @@ c  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 C BIG LOOP FOR EACH ATOM
         do IATOM = 1, natoms
 
-        if(CONTROL)write(*,*)'MS: bigLoop iatom=',IATOM
+c        if(CONTROL)write(*,*)'MS: bigLoop iatom=',IATOM
 
 C SKIP IGNORED ATOMS
 
@@ -1132,14 +1132,14 @@ C IATOM IS NOT ITS OWN NEIGHBOR
 	   aa1=dsqrt(D2)
 	   if(aa1+RI.le.rad(JATOM)+toler_bur)then
 	   if((OPT_printcx.ge.iiprint1).or.CONTROL)then
-	   write(*,*)'Iatom ',IATOM, ' is inside of Jatom',JATOM
+c	   write(*,*)'Iatom ',IATOM, ' is inside of Jatom',JATOM
 	   end if
 	   goto 5650
 	   end if ! Iatom is inside
 
 	   if(aa1+rad(JATOM).le.RI+toler_bur) then
 	   if((OPT_printcx.ge.iiprint1).or.CONTROL)then
-	   write(*,*)'Jatom ',JATOM, ' is inside of Iatom',IATOM
+c	   write(*,*)'Jatom ',JATOM, ' is inside of Iatom',IATOM
 	   end if
 	   go to 2350
 	   end if ! inside
@@ -1334,8 +1334,8 @@ C - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
               JATOM = INBR(JNBR)
 
-              if(CONTROL)
-     &     write(*,*)'MS:MEDIUM LOOP JNBR,JATOM=',JNBR,JATOM
+c              if(CONTROL)
+c     &     write(*,*)'MS:MEDIUM LOOP JNBR,JATOM=',JNBR,JATOM
 
 
               IF (JATOM .LE. IATOM) GO TO 5150
@@ -1822,7 +1822,7 @@ c VERTEX coordinates
 	    end if !OPT_CCdot_ProbProj
 
         if(ndot_cc.gt.ndotccmx)then
-        write(*,*)'MAIN-sims ERROR: ndotccmx too small!!'
+c        write(*,*)'MAIN-sims ERROR: ndotccmx too small!!'
         stop
         end if
 
@@ -2302,12 +2302,12 @@ c
             if(OPT_printsd.ge.iiprint2)then
 	    write(kanalpl,*)'ARC points in LOC syst:'
 	    do i=1,NARCT
-	    write(*,*)'xyz=',(v0_arc(k,i),k=1,3)
+c	    write(*,*)'xyz=',(v0_arc(k,i),k=1,3)
 	    end do !i
 	    end if !OPT_printsd
 
             if(NARCT .GT. maxarc)then
-	    write(*,*)'FATAL ERROR!: maxarc too small!!'
+c	    write(*,*)'FATAL ERROR!: maxarc too small!!'
 	    stop
 	    end if
 
@@ -2332,7 +2332,7 @@ c
 	    do ismp2=1,2
         nsmp2tot = nsmp2tot + 1
 		if(nsmp2tot.gt.nsmp2_max)then
-	    write(*,*)'FATAL ERROR!: nsmp2_max too small !!'
+c	    write(*,*)'FATAL ERROR!: nsmp2_max too small !!'
 	    stop
 	    end if
 
@@ -2378,7 +2378,7 @@ c
 			if(dot_type(ndot).eq.sadlsmtypei)then
 			ndotsmp2 = ndotsmp2 +1
 			if(ndotsmp2.ge.ndotsmp2_max)then
-			write(*,*)'FATAL ERROR!: dotsmp2_max too small !!'
+c			write(*,*)'FATAL ERROR!: dotsmp2_max too small !!'
 			end if
 			dotsmp2_nsm(ndotsmp2)=nsmp2tot - 1
 			dotsmp2_dgl(ndotsmp2)=idot_g
@@ -2775,7 +2775,7 @@ c
 	   end do !it loop over torus
 ctt
 	   if(OPT_printcx.ge.iiprint1)then
-	   write(*,*)'IATOM=',IATOM,'ACCEP Ndot,dot_aw=',I,dot_aw(I)
+c	   write(*,*)'IATOM=',IATOM,'ACCEP Ndot,dot_aw=',I,dot_aw(I)
            end if
 
 	   goto 5320
@@ -2788,7 +2788,7 @@ ctt
 
 	   if(OPT_printcx.ge.iiprint1)then
            do I=1,NUV
-	   write(*,*)'final dot I area=',I,dot_aw(I)
+c	   write(*,*)'final dot I area=',I,dot_aw(I)
            end do !I
 	   end if
 
@@ -3898,7 +3898,7 @@ c
         IF (NVERT .LT. 2) NVERT = 2
 
 	if(CONTROL)then
-	write(*,*)'GENUN01: Nvert:',nvert
+c	write(*,*)'GENUN01: Nvert:',nvert
 	endif
 
         NU = 0
@@ -3926,7 +3926,7 @@ c
            if(I.eq.0.or.I.eq.NVERT) NHOR = 1
 
 	if(CONTROL)then
-	write(*,*)'GENUN01: iVert:',i,' Nhor:',NHOR
+c	write(*,*)'GENUN01: iVert:',i,' Nhor:',NHOR
 	endif
 
            dNHOR=dfloat(NHOR)
@@ -3941,7 +3941,7 @@ c
               Y = DSIN(FJ) * XY
 
          IF (NU .GE. Nlarg)then
-	 write(*,*)'GENUN01: probeSphe is not completed'
+c	 write(*,*)'GENUN01: probeSphe is not completed'
 	 GO TO 150
 	 end if
 
@@ -3970,11 +3970,11 @@ C        TESTE = TESTE+AR(i)
 
 
 	if(CONTROL)then
-	write(*,'(a12,i5,a12,f16.14)')
-     &	'GENUN01:N =',NU,' area norm=',aaf
-	write(*,*)'dotN   x   y   z area TETA'
+c	write(*,'(a12,i5,a12,f16.14)')
+c     &	'GENUN01:N =',NU,' area norm=',aaf
+c	write(*,*)'dotN   x   y   z area TETA'
 	do i=1,NU
-	write(*,'(i5,5f8.3)')i,U(1,i),U(2,i),U(3,i),AR(i),TET(i)
+c	write(*,'(i5,5f8.3)')i,U(1,i),U(2,i),U(3,i),AR(i),TET(i)
 	enddo
 	endif
 
@@ -4056,7 +4056,7 @@ c
        CONTROL = .false.
 
 	if(print.ge.iprint0)then
-	write(*,*)'GENUN02 start:'
+c	write(*,*)'GENUN02 start:'
 	end if
 c
 c ASSIGN data
@@ -4147,7 +4147,7 @@ c
               Y = DSIN(FJ) * XY
 
               IF (NU .GE. N)then
-	      write(*,*)'GENUN02:ERROR: sphera is not completed'
+c	      write(*,*)'GENUN02:ERROR: sphera is not completed'
 	      GO TO 150
 	      end if
 
@@ -4207,8 +4207,8 @@ c
 
         aaf = 4.0d0*PI*RI2/area
 	if(CONTROL)then
-	write(*,'(a12,i5,a12,f16.14)')
-     &	'GENUN02:N =',NU,' area norm=',aaf
+c	write(*,'(a12,i5,a12,f16.14)')
+c     &	'GENUN02:N =',NU,' area norm=',aaf
 	end if
 
 	do i=1,NU
@@ -4219,16 +4219,16 @@ c
         close(kanalz)
 
 	if(print.ge.iprint1)then
-	write(*,*)'coordinates'
+c	write(*,*)'coordinates'
 	do k=1,N
-	write(*,'(a10,i5,3f10.6)')'parent ',k,(U(k1,1,k),k1=1,3)
+c	write(*,'(a10,i5,3f10.6)')'parent ',k,(U(k1,1,k),k1=1,3)
 	do k2=2,ncloc
-	write(*,'(a10,i5,3f10.6)')'childr ',k2,(U(k1,k2,k),k1=1,3)
+c	write(*,'(a10,i5,3f10.6)')'childr ',k2,(U(k1,k2,k),k1=1,3)
 	end do
 	end do
 	end if
 	if(print.ge.iprint0)then
-	write(*,*)'GENUN02 finish: Nvect', N
+c	write(*,*)'GENUN02 finish: Nvect', N
 	end if
 
         RETURN
@@ -4552,9 +4552,9 @@ cmar19        if(nd.gt.1.25*ntriangl(4))then
        end do
        bb=dsqrt(bb/dfloat(ndot))
        bb=bb/aa1
-       write(*,*)'gener_cc_dot:ndot=',ndot
-       write(*,*)'Area RMS for Dots bb(relative)=',bb
-       write(*,*)'AREA_CC control: area_cc, sum=',area_cc,aa
+c       write(*,*)'gener_cc_dot:ndot=',ndot
+c       write(*,*)'Area RMS for Dots bb(relative)=',bb
+c       write(*,*)'AREA_CC control: area_cc, sum=',area_cc,aa
        end if !control
 
 2000       return
@@ -4996,10 +4996,10 @@ c
 	 toler_c(k)=0.0d0
          end do
 	 if(CONTROL)then
-	 write(*,*)'gener_CC02'
-	 write(*,'(a6,3f10.6)')'v1=',v1
-	 write(*,'(a6,3f10.6)')'v2=',v2
-	 write(*,'(a6,3f10.6)')'v3=',v3
+c	 write(*,*)'gener_CC02'
+c	 write(*,'(a6,3f10.6)')'v1=',v1
+c	 write(*,'(a6,3f10.6)')'v2=',v2
+c	 write(*,'(a6,3f10.6)')'v3=',v3
 	 end if !COMTROL
 
 	  do k=1,3
@@ -5052,7 +5052,7 @@ c
 	tetmx = dacos(tetmx)
 
         if(CONTROL)then
-	write(*,*)'GENUN01:mostRemoteVert:',lmin,' tetmx = ', tetmx
+c	write(*,*)'GENUN01:mostRemoteVert:',lmin,' tetmx = ', tetmx
 	end if
 
 	s=null
@@ -5083,10 +5083,10 @@ c
 	end if !equator
 
 	if(CONTROL)then
-	write(*,*)'Rotatiom Matr G:'
-	 write(*,'(a6,3f10.6)')'G(k,1)=',(G(k,1), k=1,3)
-	 write(*,'(a6,3f10.6)')'G(k,2)=',(G(k,2), k=1,3)
-	 write(*,'(a6,3f10.6)')'G(k,3)=',(G(k,3), k=1,3)
+c	write(*,*)'Rotatiom Matr G:'
+c	 write(*,'(a6,3f10.6)')'G(k,1)=',(G(k,1), k=1,3)
+c	 write(*,'(a6,3f10.6)')'G(k,2)=',(G(k,2), k=1,3)
+c	 write(*,'(a6,3f10.6)')'G(k,3)=',(G(k,3), k=1,3)
         do l=1,4
         do j=1,3
         u(j)=0.0
@@ -5098,11 +5098,11 @@ c
         vt(k,l)=u(k)
         end do
         end do!l
-	write(*,*)'Rotated vertexes: toLocal x,y,z'
-	 write(*,'(a9,3f10.6)')'v1(k)=',(vt(k,1), k=1,3)
-	 write(*,'(a9,3f10.6)')'v2(k)=',(vt(k,2), k=1,3)
-	 write(*,'(a9,3f10.6)')'v3(k)=',(vt(k,3), k=1,3)
-	 write(*,'(a9,3f10.6)')'z1(k)=',(vt(k,4), k=1,3)
+c	write(*,*)'Rotated vertexes: toLocal x,y,z'
+c	 write(*,'(a9,3f10.6)')'v1(k)=',(vt(k,1), k=1,3)
+c	 write(*,'(a9,3f10.6)')'v2(k)=',(vt(k,2), k=1,3)
+c	 write(*,'(a9,3f10.6)')'v3(k)=',(vt(k,3), k=1,3)
+c	 write(*,'(a9,3f10.6)')'z1(k)=',(vt(k,4), k=1,3)
 	end if !CONTROL
 
 	s11=0.0d0
@@ -5189,11 +5189,11 @@ c
         vt(k,l)=u(k)
         end do
         end do!l
-	write(*,*)'Rotated shiftedVertexes: toLocal x,y,z'
-	 write(*,'(a9,3f10.6)')'v1(k)=',(vt(k,1), k=1,3)
-	 write(*,'(a9,3f10.6)')'v2(k)=',(vt(k,2), k=1,3)
-	 write(*,'(a9,3f10.6)')'v3(k)=',(vt(k,3), k=1,3)
-	 write(*,'(a9,3f10.6)')'z1(k)=',(vt(k,4), k=1,3)
+c	write(*,*)'Rotated shiftedVertexes: toLocal x,y,z'
+c	 write(*,'(a9,3f10.6)')'v1(k)=',(vt(k,1), k=1,3)
+c	 write(*,'(a9,3f10.6)')'v2(k)=',(vt(k,2), k=1,3)
+c	 write(*,'(a9,3f10.6)')'v3(k)=',(vt(k,3), k=1,3)
+c	 write(*,'(a9,3f10.6)')'z1(k)=',(vt(k,4), k=1,3)
 	end if !control
 
 	call CROSS(v21,v31,x)
@@ -5229,13 +5229,13 @@ c
 	 area_dot(ndot)= ARUP(i)
 	 area=area + area_dot(ndot)
 	 if(CONTROL)then
-	 write(*,*)'dot accepted i=',i,'tet(i)=',TETP(i)
-	 write(*,*)'UPprsph, xyz                    area'
-	write(*,'(i5,1x,3f10.6,2x,30x,2x,f10.7)')i,
-     &	(UP(k,i),k=1,3),ARUP(i)
-	write(*,*)'dotRot:ndot, xyz            vnorm   area'
-	write(*,'(i5,1x,3f10.6,2x,3f10.6,2x,f10.7)')ndot,
-     &	(vdot(k,ndot),k=1,3),(vndot(k,ndot),k=1,3),area_dot(ndot)
+c	 write(*,*)'dot accepted i=',i,'tet(i)=',TETP(i)
+c	 write(*,*)'UPprsph, xyz                    area'
+c	write(*,'(i5,1x,3f10.6,2x,30x,2x,f10.7)')i,
+c     &	(UP(k,i),k=1,3),ARUP(i)
+c	write(*,*)'dotRot:ndot, xyz            vnorm   area'
+c	write(*,'(i5,1x,3f10.6,2x,3f10.6,2x,f10.7)')ndot,
+c     &	(vdot(k,ndot),k=1,3),(vndot(k,ndot),k=1,3),area_dot(ndot)
 	 end if
 
 	 end if !IN1
@@ -5249,15 +5249,15 @@ c
 1001     continue
 
 	 if(ndot.eq.0)then
-	 write(*,*)'gener_conc02:ERROR: NO dots on CC face !!'
+c	 write(*,*)'gener_conc02:ERROR: NO dots on CC face !!'
 	 stop
 	 end if
 
 	 area_cc=curv_triang_area(v1,v2,v3,center,rpr)
 	 if(CONTROL)then
-	 write(*,*)'Analcurv_triang_area=',area_cc
-	 write(*,*)'Num      triang_area=',area
-	 write(*,*)'ndot =',ndot
+c	 write(*,*)'Analcurv_triang_area=',area_cc
+c	 write(*,*)'Num      triang_area=',area
+c	 write(*,*)'ndot =',ndot
 	 end if
 
 	 if(area.ne.null)then
@@ -5268,13 +5268,13 @@ c
 	 end if
 
 	if(CONTROL)then
-	write(*,*)'CCndot:',ndot,' ReNormAreaCoeff: aa=',aa
-	write(*,*)'dot i, xyz            vnorm   area'
+c	write(*,*)'CCndot:',ndot,' ReNormAreaCoeff: aa=',aa
+c	write(*,*)'dot i, xyz            vnorm   area'
 	do i=1,ndot
-	write(*,'(i5,1x,3f10.6,2x,3f10.6,2x,f10.7)')i,
-     &	(vdot(k,i),k=1,3),(vndot(k,i),k=1,3),area_dot(i)
+c	write(*,'(i5,1x,3f10.6,2x,3f10.6,2x,f10.7)')i,
+c     &	(vdot(k,i),k=1,3),(vndot(k,i),k=1,3),area_dot(i)
 	end do
-	write(*,*)'end dotcc02 ***********'
+c	write(*,*)'end dotcc02 ***********'
 	end if
 
 	 return
@@ -5396,8 +5396,8 @@ cct
 	dtet=dacos(cosdt)
 
 	if(testpr)then
-	write(*,*)'arc_points:ATOMIJ:',IATOM,JATOM
-	write(*,*)'arc_points: tetmx, dtet=',tetmx,dtet
+c	write(*,*)'arc_points:ATOMIJ:',IATOM,JATOM
+c	write(*,*)'arc_points: tetmx, dtet=',tetmx,dtet
         end if
          arc_cross=.false.
          if(hij.le.rpr + toler_crossloc)arc_cross=.true.
@@ -5406,9 +5406,9 @@ cct
 	 if(one_side)arc_cross=.false.
 ctt
         if(testpr)then
-        write(*,*)'arc_points: hij,toler_cross:',
-     &  hij,toler_cross
-	 write(*,*)'one_side:',one_side,' arc_cross:',arc_cross
+c        write(*,*)'arc_points: hij,toler_cross:',
+c     &  hij,toler_cross
+c	 write(*,*)'one_side:',one_side,' arc_cross:',arc_cross
         end if
 
 	dtet2=dtet*0.5d0
@@ -5436,7 +5436,7 @@ ctt
 	if(narc.lt.1)goto 1001
 
          if(narc.gt.narcmx)then
-         write(*,*)'ERROR : sub: nrc_points , narcmx is small=',narcmx
+c         write(*,*)'ERROR : sub: nrc_points , narcmx is small=',narcmx
 	 stop
          end if
 
@@ -5490,17 +5490,17 @@ ctt
         stor=stor_ijs
 ctt
           if(testpr)then
-          write(*,*)'torus: arc_cross=',arc_cross
-          write(*,*)'putsmall = ',putsm
-          write(*,*)'dot_density=',dens
-          write(*,'(a50,3i5)')
-     &    'arc_points: on v0arc: narc,ni,nj=',
-     &    narc,ni,nj
-          write(*,*)'nn    x       y       z'
+c          write(*,*)'torus: arc_cross=',arc_cross
+c          write(*,*)'putsmall = ',putsm
+c          write(*,*)'dot_density=',dens
+c          write(*,'(a50,3i5)')
+c     &    'arc_points: on v0arc: narc,ni,nj=',
+c     &    narc,ni,nj
+c          write(*,*)'nn    x       y       z'
           do i=1,narc
-          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
+c          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
           end do !i
-          write(*,*)'analitical area(1radrot):stor-i,j=',stor_i,stor_j
+c          write(*,*)'analitical area(1radrot):stor-i,j=',stor_i,stor_j
           end if !testpr
 
         goto 1001
@@ -5527,11 +5527,11 @@ ctt
           psi_xyz(1) = -psj_xyz(1)
 ctt
           if(testpr)then
-          write(*,*)'hij,rad_smooth probe=',hij,rad_sm
-          write(*,'(a30,3f10.6)')
-     &    'costi,costj,costsm=',costi,costj,costsm
-          write(*,'(a45,2f8.4)')
-     &   'arc_points:singular arc: psi,psj_xyz',psi_xyz(1),psj_xyz(1)
+c          write(*,*)'hij,rad_smooth probe=',hij,rad_sm
+c          write(*,'(a30,3f10.6)')
+c     &    'costi,costj,costsm=',costi,costj,costsm
+c          write(*,'(a45,2f8.4)')
+c     &   'arc_points:singular arc: psi,psj_xyz',psi_xyz(1),psj_xyz(1)
           end if
 
           pi05=pi*0.5d0
@@ -5584,11 +5584,11 @@ ctt
           ni = ni + ni_s   ! total points for iatom-arc
 
           if(testpr)then
-          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
-     &    (ni-ni_s),ni_s
+c          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
+c     &    (ni-ni_s),ni_s
           write(*,*)'nn    x       y       z'
           do i=1,ni
-          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
+c          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
           end do !i
           end if !testpr
 
@@ -5627,11 +5627,11 @@ ctt
           nj = nj + ni_s   ! total points for jatom-arc
 
           if(testpr)then
-          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
-     &    (ni-ni_s),ni_s
-          write(*,*)'nn    x       y       z'
+c          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
+c     &    (ni-ni_s),ni_s
+c          write(*,*)'nn    x       y       z'
           do i=1+ni,nj+ni
-          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
+c          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
           end do !i
           end if !testpr
 
@@ -5648,9 +5648,9 @@ ctt
 
 ctt
         if(testpr)then
-        write(*,'(a60,3f8.5)')
-     &  'singul arc:analyt area(per 1rad):stor_i,smsph_i,stor_j',
-     &  stor_i,smsph_i,stor_j
+c        write(*,'(a60,3f8.5)')
+c     &  'singul arc:analyt area(per 1rad):stor_i,smsph_i,stor_j',
+c     &  stor_i,smsph_i,stor_j
         end if
 
 	end if !arc_cross
@@ -5668,8 +5668,8 @@ ctt
 
 ctt
         if(testpr)then
-        write(*,'(a45,2i5,2x,f8.6)')'arc_point:nijs_face,isf,rot_ang=',
-     &  nijs_face,isf,rot_ang
+c        write(*,'(a45,2i5,2x,f8.6)')'arc_point:nijs_face,isf,rot_ang=',
+c     &  nijs_face,isf,rot_ang
         end if
 
         stor = stor + stor_ijs*rot_ang
@@ -5677,7 +5677,7 @@ cttw
         start_ang = RotAng(nsf) - RotAng(1)  !!dob- RotAng(_din1)
 
         if(testpr)then
-        write(*,'(a30,f8.4)')'arc_point: start_ang =',start_ang
+c        write(*,'(a30,f8.4)')'arc_point: start_ang =',start_ang
         end if
 
         area_i=0.0d0
@@ -5700,7 +5700,7 @@ cttw
         end if !dfi gt drot_max
 ctt
         if(testpr)then
-        write(*,*)'arc_point:i=',i,' numb_rot:nr=',nr
+c        write(*,*)'arc_point:i=',i,' numb_rot:nr=',nr
         end if
 ctt
 
@@ -5726,7 +5726,7 @@ ctt
          ndotl=ndotl + 1
 
          if(ndotl.gt.ndotmx)then
-         write(*,*)'ERROR! call arc_points:no space, incrs ndotmx!!'
+c         write(*,*)'ERROR! call arc_points:no space, incrs ndotmx!!'
          stop
          end if
 
@@ -5778,11 +5778,11 @@ ctt
          end if !
 
          if(testpr)then
-	 write(*,'(a5,i3,a3,i5,a5,i3,a5,f6.3,1x,a4,3f6.3,a5,3f6.3)')
-     &   'rotj:',j,'id=',ndotl,'type:',dot_type(ndotl),
-     &   'area:',dot_area(ndotl),
-     &   ' xyz',(dot_xyz(k,ndotl),k=1,3),
-     &   'nvec=', (dot_vn(k,ndotl),k=1,3)
+c	 write(*,'(a5,i3,a3,i5,a5,i3,a5,f6.3,1x,a4,3f6.3,a5,3f6.3)')
+c     &   'rotj:',j,'id=',ndotl,'type:',dot_type(ndotl),
+c     &   'area:',dot_area(ndotl),
+c     &   ' xyz',(dot_xyz(k,ndotl),k=1,3),
+c     &   'nvec=', (dot_vn(k,ndotl),k=1,3)
          end if
 
          end do !j rotation
@@ -5791,12 +5791,12 @@ ctt
 
 ctt
          if(testpr)then
-         write(*,*)'arc_point: dot in loc xyz: saddle isf=',isf
-         write(*,*)'compare areas(anal vs num) arci,arcj,arcsm'
-         write(*,'(a18,2f12.8)')'stor_i,area_i',stor_i*rot_ang,area_i
-         write(*,'(a18,2f12.8)')'stor_j,area_j',stor_j*rot_ang,area_j
-         write(*,'(a35,3f12.8)')'smsphi*rot_ang,area_si,srea_sj',
-     &   smsph_i*rot_ang,area_si ,area_sj
+c         write(*,*)'arc_point: dot in loc xyz: saddle isf=',isf
+c         write(*,*)'compare areas(anal vs num) arci,arcj,arcsm'
+c         write(*,'(a18,2f12.8)')'stor_i,area_i',stor_i*rot_ang,area_i
+c         write(*,'(a18,2f12.8)')'stor_j,area_j',stor_j*rot_ang,area_j
+c         write(*,'(a35,3f12.8)')'smsphi*rot_ang,area_si,srea_sj',
+c     &   smsph_i*rot_ang,area_si ,area_sj
          end if
 
          end do !isf loop over faces
@@ -5886,10 +5886,10 @@ c initialize
 
 
        if(OPT_printsd.ge.iiprint1)then
-       write(*,*)'*****************************************'
-       write(*,*)'START SUB torus_angl_rot'
-       write(*,*)'nvertex(IATOM)=',nvertex(IATOM),
-     &    ' nvertex(JATOM)=',nvertex(JATOM)
+c       write(*,*)'*****************************************'
+c       write(*,*)'START SUB torus_angl_rot'
+c       write(*,*)'nvertex(IATOM)=',nvertex(IATOM),
+c     &    ' nvertex(JATOM)=',nvertex(JATOM)
        end if
 c
        if(nvertex(IATOM).ge.1.and.nvertex(JATOM).ge.1)then !Do i LOOP
@@ -5904,7 +5904,7 @@ c
 
 c control
        if(icf.gt.nbr_mx.or.icf.gt.nbr_mxx)then
-       write(*,*)'Sub torus_rot_angl:ERROR: nbr_mx,nbr_mxx SMALL'
+c       write(*,*)'Sub torus_rot_angl:ERROR: nbr_mx,nbr_mxx SMALL'
        stop
        end if! control
 
@@ -5914,9 +5914,9 @@ c control
 
 
 	       if(OPT_printsd.ge.iiprint1)then
-	       write(*,*)
-	       write(*,*)'   icf =  ', icf
-	       write(*,*)'Vertex Iat,Jat=',iavert,javert
+c	       write(*,*)
+c	       write(*,*)'   icf =  ', icf
+c	       write(*,*)'Vertex Iat,Jat=',iavert,javert
                end if
 
         exist_i=.false.
@@ -5947,7 +5947,7 @@ c control
 
 c check
 	if(.not.exist_i.and.exist_j.and.exist_k)then
-	write(*,*)'atom K is not found'
+c	write(*,*)'atom K is not found'
 	stop
 	end if
 
@@ -5965,13 +5965,13 @@ c check
 
 c
 	      if(OPT_printsd.ge.iiprint1)then
-	write(*,*)'ARC  from iconcf=', iconcf
-	write(*,*)'IATOM,JATOM,KATOM=',IATOM,JATOM,KATOM
-	write(*,*)'iavert,javert,kavert=',iavert,javert,kavert
-	write(*,*)'VERTEX VPI=',VPI
-	write(*,*)'VERTEX VPJ=',VPJ
-	write(*,*)'VERTEX VPK=',VPK
-	write(*,*)'PROBE PIJK=',PIJK
+c	write(*,*)'ARC  from iconcf=', iconcf
+c	write(*,*)'IATOM,JATOM,KATOM=',IATOM,JATOM,KATOM
+c	write(*,*)'iavert,javert,kavert=',iavert,javert,kavert
+c	write(*,*)'VERTEX VPI=',VPI
+c	write(*,*)'VERTEX VPJ=',VPJ
+c	write(*,*)'VERTEX VPK=',VPK
+c	write(*,*)'PROBE PIJK=',PIJK
               end if
 c
 	       aa1=DOT(UIJ,UQ1)
@@ -5994,10 +5994,10 @@ c
               end do !k
 c
 	      if(OPT_printsd.ge.iiprint1)then
-	write(*,*)'FRAME : '
-	write(*,*)'UIJ=',UIJ
-	write(*,*)'UQ1=',VPJ
-	write(*,*)'UT1=',UT1
+c	write(*,*)'FRAME : '
+c	write(*,*)'UIJ=',UIJ
+c	write(*,*)'UQ1=',VPJ
+c	write(*,*)'UT1=',UT1
 	      end if !OPT_print
 
 	      SIGN = DOT(TVP,UT1)
@@ -6009,10 +6009,10 @@ c
 	      end if
 
 	      if(OPT_printsd.ge.iiprint1)then
-	      write(*,*)'SIGN of ARC ROTATION=',SignRot(icf)
-	      write(*,*)'TVP=',TVP
-	      write(*,*)'UT1_icf=',UT1
-	      write(*,*)'UT1_1  =',(Garc(K,3,1),K=1,3)
+c	      write(*,*)'SIGN of ARC ROTATION=',SignRot(icf)
+c	      write(*,*)'TVP=',TVP
+c	      write(*,*)'UT1_icf=',UT1
+c	      write(*,*)'UT1_1  =',(Garc(K,3,1),K=1,3)
 	      end if
 
 
@@ -6025,13 +6025,13 @@ c
 
 	      if(aa1.gt.one)then
 	      if(OPT_printwarn)then
-	      write(*,*)'WARNING in torus_ang_rot:aa1>one',aa1
+c	      write(*,*)'WARNING in torus_ang_rot:aa1>one',aa1
 	      end if
 	      aa1 = one
 	      end if
 	      if(aa1.lt.-one)then
 	      if(OPT_printwarn)then
-	      write(*,*)'WARNING in torus_ang_rot:aa1<-one',aa1
+c	      write(*,*)'WARNING in torus_ang_rot:aa1<-one',aa1
 	      end if
 	      aa1 = -one
 	      end if
@@ -6049,8 +6049,8 @@ ctt      aa2=aa2*SignRot(1)
      &	      RotAng(icf)=two*PI-RotAng(icf)
 
                if(OPT_printsd.ge.iiprint1)then
-	       write(*,*)'icf=', icf
-	       write(*,*)'COS(rotangl)=',aa1,' RotAng=',RotAng(icf)
+c	       write(*,*)'icf=', icf
+c	       write(*,*)'COS(rotangl)=',aa1,' RotAng=',RotAng(icf)
 	       end if
 
 	      end if
@@ -6063,7 +6063,7 @@ ctt      aa2=aa2*SignRot(1)
 	      icfIJ=icf
 
 	      if(icfIJ.ne.2*(icfIJ/2))then
-	      write(*,*)'SUbr torus_rot_ang: ERROR BAD icfIJ=',icfIJ
+c	      write(*,*)'SUbr torus_rot_ang: ERROR BAD icfIJ=',icfIJ
 	      stop
 	      end if
 
@@ -6072,9 +6072,9 @@ ctt      aa2=aa2*SignRot(1)
 	     end do!i
 
             if(OPT_printsd.ge.iiprint1)then
-            write(*,*)'Initial RotAng '
+c            write(*,*)'Initial RotAng '
 	    do i=1,icfIJ
-	    write(*,*)i,RotAng(i),order(i)
+c	    write(*,*)i,RotAng(i),order(i)
 	    end do
             end if
 
@@ -6107,15 +6107,15 @@ ctt      aa2=aa2*SignRot(1)
 	      end do !i
 ctt
            if(OPT_printsd.ge.iiprint1)then
-            write(*,*)'SORTED:i, RotAng(i),SignRot(i),order(i) '
+c            write(*,*)'SORTED:i, RotAng(i),SignRot(i),order(i) '
 	    do i=1,icfIJ
-	    write(*,*)i,RotAng(i),SignRotS(i),order(i)
+c	    write(*,*)i,RotAng(i),SignRotS(i),order(i)
 	    end do
 	    end if
 
         if(OPT_printsd.ge.iiprint1)then
-       write(*,*)'END SUB torus_angl_rot'
-       write(*,*)'*****************************************'
+c       write(*,*)'END SUB torus_angl_rot'
+c       write(*,*)'*****************************************'
        end if
 
             return
@@ -6176,13 +6176,13 @@ c
 	   end do!k
 c
 	  if(print.ge.iprint0)then
-	  write(*,*)'********************************************'
-	  write(*,*)'in cxdot_refcut:'
+c	  write(*,*)'********************************************'
+c	  write(*,*)'in cxdot_refcut:'
 	  end if
 	  if(print.ge.iprint0)then
-	  write(*,*)'dotCO=',dotCO
-	  write(*,*)'UIJ =',UIJ
-	  write(*,*)'Ds, RI ',Ds, RI, dotaw
+c	  write(*,*)'dotCO=',dotCO
+c	  write(*,*)'UIJ =',UIJ
+c	  write(*,*)'Ds, RI ',Ds, RI, dotaw
           end if
 
 c check his position
@@ -6219,15 +6219,15 @@ c check his position
 	   end do!k
 
 	  if(print.ge.iprint1)then
-          write(*,*)'INITIAL LocXYZ child i =',i
-	  write(*,*)'dotchg=',(dotch(k,i),k=1,3)
-	  write(*,*)'ROTATED child i =',i
-	  write(*,*)'dotchg=',(dotchr(k,i),k=1,3)
+c          write(*,*)'INITIAL LocXYZ child i =',i
+c	  write(*,*)'dotchg=',(dotch(k,i),k=1,3)
+c	  write(*,*)'ROTATED child i =',i
+c	  write(*,*)'dotchg=',(dotchr(k,i),k=1,3)
 	  end if
 
 	   if(aa1.gt.Ds )then ! delete this child
 	  if(print.ge.iprint1)then
-	  write(*,*)'delete child i=',i, ' dotDs=',aa1
+c	  write(*,*)'delete child i=',i, ' dotDs=',aa1
           end if
 
 	   dotstat(i) = .false.
@@ -6297,7 +6297,7 @@ c b1:
      &        .not.dotstat(6)) .and.
      &       (dotstat(3).or.dotstat(4).or.dotstat(5)).and.
      &       (dotstat(7).or.dotstat(8).or.dotstat(9)))then
-	  write(*,*)' b1: 1 2 6 - F'
+c	  write(*,*)' b1: 1 2 6 - F'
 	  do k=1,9
 	  dotstat(k)=.false.
 	  end do !k
@@ -6307,7 +6307,7 @@ c b2:
      &        .not.dotstat(8)) .and.
      &       (dotstat(2).or.dotstat(3).or.dotstat(9)).and.
      &       (dotstat(5).or.dotstat(6).or.dotstat(7)))then
-	  write(*,*)' b2: 1 4 8 - F'
+c	  write(*,*)' b2: 1 4 8 - F'
 	  do k=1,9
 	  dotstat(k)=.false.
 	  end do !k
@@ -6317,7 +6317,7 @@ c b3:
      &        .not.dotstat(7)) .and.
      &       (dotstat(4).or.dotstat(5).or.dotstat(6)).and.
      &       (dotstat(2).or.dotstat(8).or.dotstat(9)))then
-	  write(*,*)' b1: 1 3 7 - F'
+c	  write(*,*)' b1: 1 3 7 - F'
 	  do k=1,9
 	  dotstat(k)=.false.
 	  end do !k
@@ -6327,7 +6327,7 @@ c b4:
      &        .not.dotstat(9)) .and.
      &       (dotstat(3).or.dotstat(4).or.dotstat(2)).and.
      &       (dotstat(7).or.dotstat(8).or.dotstat(6)))then
-	  write(*,*)' b1: 1 5 9 - F'
+c	  write(*,*)' b1: 1 5 9 - F'
 	  do k=1,9
 	  dotstat(k)=.false.
 	  end do !k
@@ -6431,7 +6431,7 @@ c
 	  if(print.ge.iprintm)then
 	  do k=1,5
 	  if(special(k))then
-	  write(*,*)'res cxdot_refcut:special',special,'  nch ',nch
+c	  write(*,*)'res cxdot_refcut:special',special,'  nch ',nch
 	  end if
 	  end do
 	  end if
@@ -6439,9 +6439,9 @@ c
 	  end if !last cut
 
 	  if(print.ge.iprint0)then
-	  write(*,*)'nch =',nch
-	  write(*,*)'dotCO=',dotCO
-	  write(*,*)'dotstat=',(dotstat(k),k=1,nnch),'  dotaw =',dotaw
+c	  write(*,*)'nch =',nch
+c	  write(*,*)'dotCO=',dotCO
+c	  write(*,*)'dotstat=',(dotstat(k),k=1,nnch),'  dotaw =',dotaw
           end if
 
           return
@@ -6491,13 +6491,13 @@ c
 c	   lastcut = .true. !proverjaem bsegda , t.k. ne znaem kakoi
 
 	  if(print.ge.iprint0)then
-	  write(*,*)'********************************************'
-	  write(*,*)'in cxdot_refcut:'
+c	  write(*,*)'********************************************'
+c	  write(*,*)'in cxdot_refcut:'
 	  end if
 	  if(print.ge.iprint0)then
-	  write(*,'(a10,3f10.6)')'dotCO=',dotCO
-	  write(*,'(a10,3f10.6)')'UIJ =',UIJ
-	  write(*,'(a12,3f10.6)')'Ds, RI, dotaw: ',Ds, RI, dotaw
+c	  write(*,'(a10,3f10.6)')'dotCO=',dotCO
+c	  write(*,'(a10,3f10.6)')'UIJ =',UIJ
+c	  write(*,'(a12,3f10.6)')'Ds, RI, dotaw: ',Ds, RI, dotaw
           end if
 
 
@@ -6523,16 +6523,16 @@ c	   lastcut = .true. !proverjaem bsegda , t.k. ne znaem kakoi
 	   end do!k
 
 	  if(print.ge.iprint1)then
-          write(*,'(a20,i5)')'INITIAL LocXYZ child i =',i
-	  write(*,'(a12,3f10.6)')'dotch-loc:',(dotch(k,i),k=1,3)
-	  write(*,'(a12,i5)')'ROTATED child i:',i
-	  write(*,'(a12,3f10.6)')'dotch-rot:',(dotchr(k,i),k=1,3)
+c          write(*,'(a20,i5)')'INITIAL LocXYZ child i =',i
+c	  write(*,'(a12,3f10.6)')'dotch-loc:',(dotch(k,i),k=1,3)
+c	  write(*,'(a12,i5)')'ROTATED child i:',i
+c	  write(*,'(a12,3f10.6)')'dotch-rot:',(dotchr(k,i),k=1,3)
 	  end if
 
 	   if(aa1.gt.Ds)then ! Delete this child
 	  if(print.ge.iprint1)then
-	  write(*,'(a12,i5,a14,2f10.6)')
-     &	      'delete child i=',i,' dotDs, aa1:',Ds,aa1
+c	  write(*,'(a12,i5,a14,2f10.6)')
+c     &	      'delete child i=',i,' dotDs, aa1:',Ds,aa1
           end if
 
 	   dotstat(i) = .false.
@@ -6595,10 +6595,10 @@ c1005      continue
 	   end if !nch gt 0
 c
 	  if(print.ge.iprint0)then
-	  write(*,*)'lastcut:Totalidotch: nch =',nch
-	  write(*,'(a10,3f10.6)')'dotCO=',dotCO
-	  write(*,'(a10,5L1,a10,f10.6)')
-     &	      'dotstat=',(dotstat(k),k=1,nnch),'  dotaw =',dotaw
+c	  write(*,*)'lastcut:Totalidotch: nch =',nch
+c	  write(*,'(a10,3f10.6)')'dotCO=',dotCO
+c	  write(*,'(a10,5L1,a10,f10.6)')
+c     &	      'dotstat=',(dotstat(k),k=1,nnch),'  dotaw =',dotaw
           end if !print
 	  end if !lastcut
 
@@ -6618,9 +6618,9 @@ c
 	   testpr=.false.
 
        if(testpr)then
-	   write(*,'(a13,3(a4,3f7.3))')
-     &	   'inprizM:',' v1:',v1,' v2:',v2,' v3:',v3
-	   write(*,'(a6,3f7.3)')'u: ',u
+c	   write(*,'(a13,3(a4,3f7.3))')
+c     &	   'inprizM:',' v1:',v1,' v2:',v2,' v3:',v3
+c	   write(*,'(a6,3f7.3)')'u: ',u
 	   end if
 
        inp = .false.
@@ -6631,30 +6631,30 @@ c
        s = DOT(v1,v23)
 
 	   if(testpr)then
-	   write(*,'(a6,3f7.3)')'v23: ',v23
-	   write(*,*)'inprizM:s,s*DOT(u,v23):',s,s*DOT(u,v23)
+c	   write(*,'(a6,3f7.3)')'v23: ',v23
+c	   write(*,*)'inprizM:s,s*DOT(u,v23):',s,s*DOT(u,v23)
 	   end if
 
        if(s*DOT(u,v23).LE.toler)goto 100
 
        call CROSS(v3,v1,v31)
 	   if(testpr)then
-	   write(*,'(a6,3f7.3)')'v31: ',v31
-	   write(*,*)'inprizM:s*DOT(u,v31):',s*DOT(u,v31)
+c	   write(*,'(a6,3f7.3)')'v31: ',v31
+c	   write(*,*)'inprizM:s*DOT(u,v31):',s*DOT(u,v31)
 	   end if
        if(s*DOT(u,v31).LE.toler)goto 100
 
        call CROSS(v1,v2,v12)
 	   if(testpr)then
-	   write(*,'(a6,3f7.3)')'v12: ',v12
-	   write(*,*)'inprizM:s*DOT(u,v12):',s*DOT(u,v12)
+c	   write(*,'(a6,3f7.3)')'v12: ',v12
+c	   write(*,*)'inprizM:s*DOT(u,v12):',s*DOT(u,v12)
 	   end if
        if(s*DOT(u,v12).LE.toler)goto 100
 
        inp = .true.
 
 	   if(testpr)then
-	   write(*,*)'inprzm:',inp
+c	   write(*,*)'inprzm:',inp
 	   end if
 
 100    return
@@ -6870,7 +6870,7 @@ c	OPT_dotnrmkin=.false.
 	kanalzl=kanalz
 	ddotsh = 0.25d0
 	if(CONTROL)then
-	write(*,*)'In surf_kin:1:'
+c	write(*,*)'In surf_kin:1:'
          end if
 	 call connect_aamg(coords,
      &                 atnamel,resnumbl,resnamel,
@@ -7076,7 +7076,7 @@ c         nres=0
         stop
 	end if
 	 if(CONTROL)then
-	 write(*,*)'In connect_aamg: nres:', nres
+c	 write(*,*)'In connect_aamg: nres:', nres
 	 end if! CNTROL
 
 	radvC=0.95
@@ -7159,13 +7159,13 @@ c
 	end do
 	end if
 	if(CONTROL)then
-	write(*,*)'connect_aamg:atom-atom bond matrix'
-        write(*,*)'nres=', nres
+c	write(*,*)'connect_aamg:atom-atom bond matrix'
+c        write(*,*)'nres=', nres
 	do ia=1,nnatmx
-	write(*,'(a4,i4,2x,a5,4i5)')'ia=',ia,
-     &	'list=',(atom_connect(k,ia),k=1,4)
+c	write(*,'(a4,i4,2x,a5,4i5)')'ia=',ia,
+c     &	'list=',(atom_connect(k,ia),k=1,4)
 	end do
-	write(*,*)'END connect_aamg:'
+c	write(*,*)'END connect_aamg:'
 	end if
 
         return
@@ -7270,18 +7270,18 @@ caug98
         end do
 
         if(testpr)then
-		write(*,*)
-		write(*,*)'in smooth_ccdot02c: start*****************'
-        write(*,'(a58)')
-     & 'dotListToBeSmoothed: id,idg, dot_type,WDYONSm,npi,npj,WDYONRm'
+c		write(*,*)
+c		write(*,*)'in smooth_ccdot02c: start*****************'
+c        write(*,'(a58)')
+c     & 'dotListToBeSmoothed: id,idg, dot_type,WDYONSm,npi,npj,WDYONRm'
         if(ndot_smooth.le.0) goto 1000
         do id = 1, ndot_smooth
         idgl=dot_smooth_gl(id)
         npi=prpr1_smooth(1,id)
         npj=prpr1_smooth(2,id)
-        write(*,'(20x,6i6,3x,L1)')
-     &  id,idgl,dot_type(idgl),WDYONSm(1,idgl),  !aug9828
-     &  npi,npj,WDYONRm(idgl)
+c        write(*,'(20x,6i6,3x,L1)')
+c     &  id,idgl,dot_type(idgl),WDYONSm(1,idgl),  !aug9828
+c     &  npi,npj,WDYONRm(idgl)
         end do !id
         end if !testpr
 
@@ -7305,14 +7305,14 @@ caug98
         end do !k
 
         if(testpr)then
-	    write(*,'(a16,3f8.3,a4,3f8.3)')
-     &  'smooth_cc: p:',pxyz, ' p1:',p1xyz
+c	    write(*,'(a16,3f8.3,a4,3f8.3)')
+c     &  'smooth_cc: p:',pxyz, ' p1:',p1xyz
         end if
 
         dist=dsqrt(p1mp(1)**2+p1mp(2)**2+p1mp(3)**2)
 		if(dist.le.0.0d0)then
-        write(*,'(a40,3i6,f8.4)')'smooth:id, npi,npj,dist=zero',
-     &  id,npi,npj,dist
+c        write(*,'(a40,3i6,f8.4)')'smooth:id, npi,npj,dist=zero',
+c     &  id,npi,npj,dist
         goto 2000
         end if
 
@@ -7328,8 +7328,8 @@ caug98
         dv=dsqrt(vvp(1)**2+vvp(2)**2+vvp(3)**2)
 
         if(dv.le.0.0d0)then
-       write(*,'(a40,3i6,f8.4)')'smooth:id, npi,npj,dv=zero',
-     &  id,npi,npj,dv
+c       write(*,'(a40,3i6,f8.4)')'smooth:id, npi,npj,dv=zero',
+c     &  id,npi,npj,dv
         goto 2000
         end if
 
@@ -7366,8 +7366,8 @@ caug98
 
         ddd=dsqrt(dotpsm(1)**2+dotpsm(2)**2+dotpsm(3)**2)
         if(ddd.le.0.0d0)then
-       write(*,'(a40,3i6,f8.4)')'smooth:id, npi,npj,ddd=zero',
-     &  id,npi,npj,dv
+c       write(*,'(a40,3i6,f8.4)')'smooth:id, npi,npj,ddd=zero',
+c     &  id,npi,npj,dv
         goto 2000
         end if
 
@@ -7395,16 +7395,16 @@ caug98
         end do
 
         if(testpr)then
-         write(*,'(a30,4i6)')
-     &  'Res:smooth_dot:id,idgl,npi,npj=',id,idgl,npi,npj
-         write(*,'(a5,2f8.3,a6,3f8.3)')' d,H:',dist,Hpp,' psm:',psm
-         write(*,'(a8,2f6.3,a16,3f7.3,1x,3f7.3)')
-     &  'dv,ddv:',dv,ddv,' p1pp(3),vvp(3)',p1pp,vvp
-         write(*,'(a70)')
-     &  'Res: dotxyz      dotsmxyz      dotnrm     knormarea,area'
-         write(*,'(3f7.3,1x,3f7.3,1x,3f6.3,1x,2f6.3)')
-     &  dot,dot1,dnvec,kar,are1
-        write(*,*)
+c         write(*,'(a30,4i6)')
+c     &  'Res:smooth_dot:id,idgl,npi,npj=',id,idgl,npi,npj
+c         write(*,'(a5,2f8.3,a6,3f8.3)')' d,H:',dist,Hpp,' psm:',psm
+c         write(*,'(a8,2f6.3,a16,3f7.3,1x,3f7.3)')
+c     &  'dv,ddv:',dv,ddv,' p1pp(3),vvp(3)',p1pp,vvp
+c         write(*,'(a70)')
+c     &  'Res: dotxyz      dotsmxyz      dotnrm     knormarea,area'
+c         write(*,'(3f7.3,1x,3f7.3,1x,3f6.3,1x,2f6.3)')
+c     &  dot,dot1,dnvec,kar,are1
+c        write(*,*)
         end if !testpr
 
 
@@ -7446,10 +7446,10 @@ caug98
         end if
 
         if(testpr)then
-        write(*,'(a24,2i6)')'smooth_dotFiN:id,idgl:',id,idgl
-        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
-     &  (dotcrd(k,idgl),k=1,3),
-     &  (dotnvec(k,idgl),k=1,3),dotarea(idgl)
+c        write(*,'(a24,2i6)')'smooth_dotFiN:id,idgl:',id,idgl
+c        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
+c     &  (dotcrd(k,idgl),k=1,3),
+c     &  (dotnvec(k,idgl),k=1,3),dotarea(idgl)
         end if !testpr
 	end if !WDYONSm
         end do !id
@@ -7459,28 +7459,28 @@ caug98
      &                  dot_smooth_gl,WDYONRm)
 
         if(testpr)then
-        write(*,'(a58)')
-     & 'dotListBeSmoothed: id, idg, dot_type,WDYONSm,npi,npj'
+c        write(*,'(a58)')
+c     & 'dotListBeSmoothed: id, idg, dot_type,WDYONSm,npi,npj'
         if(ndot_smooth.le.0) goto 1000
         do id = 1, ndot_smooth
         idgl=dot_smooth_gl(id)
         npi=prpr1_smooth(1,id)
         npj=prpr1_smooth(2,id)
-        write(*,'(20x,6i6,1x,L1)')
-     &  id,idgl,dot_type(idgl),WDYONSm(1,idgl), !aug9828
-     &  npi,npj,WDYONRm(idgl)
+c        write(*,'(20x,6i6,1x,L1)')
+c     &  id,idgl,dot_type(idgl),WDYONSm(1,idgl), !aug9828
+c     &  npi,npj,WDYONRm(idgl)
         end do !id
-		write(*,*)'in smooth_ccdot02c: FINISH'
+c		write(*,*)'in smooth_ccdot02c: FINISH'
         end if !testpr
 
 1000     continue
 
 	 if(testpr)then
-	 write(*,*)
-         write(*,'(a38,i6)')
-     &  'SIMS:smooth_dotCC: Ndots are smoothed',nsmoothl
-        write(*,'(a30,2f12.5)')'SIMS:Singular->Smoothed area:',
-     &  aret,are1t
+c	 write(*,*)
+c         write(*,'(a38,i6)')
+c     &  'SIMS:smooth_dotCC: Ndots are smoothed',nsmoothl
+c        write(*,'(a30,2f12.5)')'SIMS:Singular->Smoothed area:',
+c     &  aret,are1t
 	 end if
 
          return
@@ -7567,8 +7567,8 @@ caug98
         testpr = .false.   !sep9825
 
         if(testpr)then
-		write(*,*)
-        write(*,*)'removeCCdot02d:start*******************'
+c		write(*,*)
+c        write(*,*)'removeCCdot02d:start*******************'
 	    end if
 
        toler_in = 0.1d-6
@@ -7596,20 +7596,20 @@ caug98
 	   vitim = RP*aisij/(RP+radi)
 	   vjtjm = RP*ajsij/(RP+radj)
 	   if(testpr)then
-	   write(*,'(a20)')
-     & 'in remove_ccdot02:'
-	   write(*,'(a30,5f8.3)')'RP,HIJ,rad_sm,radi,radj:',
-     & RP,HIJ,rad_sm,radi,radj
-	   write(*,'(a45,4f7.3)')
-     &	 'arccross=2:geom:aibij,ajbij,aisij,ajsij:',
-     &	 aibij,ajbij,aisij,ajsij
+c	   write(*,'(a20)')
+c     & 'in remove_ccdot02:'
+c	   write(*,'(a30,5f8.3)')'RP,HIJ,rad_sm,radi,radj:',
+c     & RP,HIJ,rad_sm,radi,radj
+c	   write(*,'(a45,4f7.3)')
+c     &	 'arccross=2:geom:aibij,ajbij,aisij,ajsij:',
+c     &	 aibij,ajbij,aisij,ajsij
 	   end if
 
 
 
        ic=icfIJ/2
        if(ic*2 .ne. icfIJ)then
-       write(*,*)'remove_ccdot02b: ERROR: icfIJ# 2*k (not even)'
+c       write(*,*)'remove_ccdot02b: ERROR: icfIJ# 2*k (not even)'
        stop
        end if !ic
        nedgCpploc = ic
@@ -7628,9 +7628,9 @@ caug98
     	jcgl=concf_ijf(jc)
 
         if(testpr)then
-		write(*,*)'* * * * Edge loop * * * * * * '
-        write(*,*)'remove_cc02b:icfIJ: ic,jc = ',icfIJ,ic,jc
-        write(*,*)'remove_cc02b: icgl,jcgl = ',icgl,jcgl
+c		write(*,*)'* * * * Edge loop * * * * * * '
+c        write(*,*)'remove_cc02b:icfIJ: ic,jc = ',icfIJ,ic,jc
+c        write(*,*)'remove_cc02b: icgl,jcgl = ',icgl,jcgl
         end if
 
        nprb(1)=nconc_glb_nprpos(icgl)
@@ -7662,8 +7662,8 @@ caug98
        	Hrem = dpp12 - toler_crossloc
 
        if(testpr)then
-       write(*,'(a39,3f9.3)')'remove_ccdot02c:dpp12,Hsmin,Hrem:',
-     & dpp12,Hsmin,Hrem
+c       write(*,'(a39,3f9.3)')'remove_ccdot02c:dpp12,Hsmin,Hrem:',
+c     & dpp12,Hsmin,Hrem
        end if
 
        do ip=1,2
@@ -7677,12 +7677,12 @@ caug98
        end if!ip=2
 
         if(testpr)then
-		write(*,*)'* * * PROBE loop* * * * * * * * * *'
-		write(*,'(a22,2i5)')'removeCCdot02d:ipp,ip;',ipp,ip
-		write(*,'(a5,3f7.3,a5,3f7.3,a5,3f7.3)')
-     &  'Aic:',Aic,' Ajc:',Ajc, ' UIJ:',UIJ
-        write(*,'(a10,3f8.3,1x,2(a5,3f8.3))')
-     &	'probexyz:p',pxyz, ' p1:',p1xyz,' pp2:',p2xyz
+c		write(*,*)'* * * PROBE loop* * * * * * * * * *'
+c		write(*,'(a22,2i5)')'removeCCdot02d:ipp,ip;',ipp,ip
+c		write(*,'(a5,3f7.3,a5,3f7.3,a5,3f7.3)')
+c     &  'Aic:',Aic,' Ajc:',Ajc, ' UIJ:',UIJ
+c        write(*,'(a10,3f8.3,1x,2(a5,3f8.3))')
+c     &	'probexyz:p',pxyz, ' p1:',p1xyz,' pp2:',p2xyz
         end if
 	   if(arc_cross.eq.2)then
 
@@ -7707,10 +7707,10 @@ caug98
 		vjtj(k) = vjtj(k) + pxyz(k)
 	   end do
 
-		 write(*,'(a35,3f8.3)')':arc_cross2:'
-		 write(*,'(3(a8,3f8.3))')'vpi:',vpi,' vpj:',
-     &	 vpj, ' vpk:',vpk
-		 write(*,'(2(a8,3f8.3))')'viti:',viti,' vjtj:',vjtj
+c		 write(*,'(a35,3f8.3)')':arc_cross2:'
+c		 write(*,'(3(a8,3f8.3))')'vpi:',vpi,' vpj:',
+c     &	 vpj, ' vpk:',vpk
+c		 write(*,'(2(a8,3f8.3))')'viti:',viti,' vjtj:',vjtj
 		 end if !testpr
 
 		dppss=0.0d0
@@ -7741,13 +7741,13 @@ caug98
 		sjm = DOT(npsj,UIJ)
 
          if(testpr)then
-		 write(*,'(a20,3f8.3)')'***smooth probes:'
-		 write(*,'(2(a8,3f8.3))')
-     &   'sic:',sic,' sjc:',sjc,' sij2:',sij2c
-		 write(*,'(2(a8,3f8.3),a18,2f6.2)')
-     &	 ' npsi0:',npsi, ' npsj0:',npsj,
-     &   ' signi, signj:', sim,sjm
-		 write(*,'(a16,2f8.3)')'sicosm, sjcosm:',sicosm,sjcosm
+c		 write(*,'(a20,3f8.3)')'***smooth probes:'
+c		 write(*,'(2(a8,3f8.3))')
+c     &   'sic:',sic,' sjc:',sjc,' sij2:',sij2c
+c		 write(*,'(2(a8,3f8.3),a18,2f6.2)')
+c     &	 ' npsi0:',npsi, ' npsj0:',npsj,
+c     &   ' signi, signj:', sim,sjm
+c		 write(*,'(a16,2f8.3)')'sicosm, sjcosm:',sicosm,sjcosm
 		 end if
 
 		if(sim.lt.0.0d0)then
@@ -7780,12 +7780,12 @@ caug98
 		end do
 
          if(testpr)then
-		 write(*,'(2(a8,3f8.3),/,a18,2f6.2)')
-     &		 ' npsi:',npsi, ' npsj:',npsj,
-     &   ' signi, signj:', sim,sjm
-		 write(*,'(a10,f8.3,a8,3f8.3)')
-     &	 'dppss:', dppss, ' nppss:', nppss
-		 write(*,'(a10,3f8.3)')'sij21c:',sij21c
+c		 write(*,'(2(a8,3f8.3),/,a18,2f6.2)')
+c     &		 ' npsi:',npsi, ' npsj:',npsj,
+c     &   ' signi, signj:', sim,sjm
+c		 write(*,'(a10,f8.3,a8,3f8.3)')
+c     &	 'dppss:', dppss, ' nppss:', nppss
+c		 write(*,'(a10,3f8.3)')'sij21c:',sij21c
 		 end if
 
 	     end if !arc_cross=2 :sep9815
@@ -7799,14 +7799,14 @@ caug98
         end do !k
 
         if(testpr)then
-        write(*,'(a20,i5,1x,a6,3f8.4,1x,a5,L1,a5,2i2)') !aug9828
-     &	'removeCCd02d(IN):id:',id,
-     &  'dotcrd:',(dotcrdl(k,id),k=1,3),
-     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
-		 write(*,'(a12,3f8.3,a8,f8.3)')
-     &  'dotpxyz:',dotpxyz, ' dist:',dist
-		 write(*,'(2(a12,3f8.3))')
-     &  'dotp2xyz:',dotp2xyz, ' dots2xyz:', dots2xyz
+c        write(*,'(a20,i5,1x,a6,3f8.4,1x,a5,L1,a5,2i2)') !aug9828
+c     &	'removeCCd02d(IN):id:',id,
+c     &  'dotcrd:',(dotcrdl(k,id),k=1,3),
+c     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
+c		 write(*,'(a12,3f8.3,a8,f8.3)')
+c     &  'dotpxyz:',dotpxyz, ' dist:',dist
+c		 write(*,'(2(a12,3f8.3))')
+c     &  'dotp2xyz:',dotp2xyz, ' dots2xyz:', dots2xyz
 
          end if
 
@@ -7818,9 +7818,9 @@ caug98
         WDYONRm(id)= .true.
 
         if(testpr)then
-        write(*,'(a28,i5,a5,L1,a5,2i2)') !aug9828
-     &	'removeCCd02d:Remove0:id:',id,
-     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
+c        write(*,'(a28,i5,a5,L1,a5,2i2)') !aug9828
+c     &	'removeCCd02d:Remove0:id:',id,
+c     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
         end if
 
 	    end if !WDYON
@@ -7832,7 +7832,7 @@ caug98
 		ndot_smooth = ndot_smooth +1
 
         if(ndot_smooth.gt.ndot_smmx)then
-        write(*,*)'ERROR:ndot_smoothmx is SMALL !!'
+c        write(*,*)'ERROR:ndot_smoothmx is SMALL !!'
         stop
         end if
 
@@ -7841,9 +7841,9 @@ caug98
         prpr1_smooth(2,ndot_smooth) =  jcgl
 
         if(testpr)then
-        write(*,'(a25,i5,1x,a5,L1,a5,2i2)') !aug9828
-     &	'removeCCd02d:Smooth-dot:id:',id,
-     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
+c        write(*,'(a25,i5,1x,a5,L1,a5,2i2)') !aug9828
+c     &	'removeCCd02d:Smooth-dot:id:',id,
+c     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
         end if
 
 		end if ! smooth
@@ -7872,8 +7872,8 @@ caug98
 		sjcos = sjcos/dsqrt(sjm)
 
 		 if(testpr)then
-		 write(*,'(a17,3f8.3)')' sim, sjm, sijm:', sim,sjm,sijm
-		 write(*,'(a17,2f8.3)')'sicos, sjcos:',sicos, sjcos
+c		 write(*,'(a17,3f8.3)')' sim, sjm, sijm:', sim,sjm,sijm
+c		 write(*,'(a17,2f8.3)')'sicos, sjcos:',sicos, sjcos
 		 end if
 
 
@@ -7884,10 +7884,10 @@ caug98
 		WDYONRm(id)=.true.
 
 		if(testpr)then
-        write(*,'(a25,i5,1x,a5,L1,a5,2i2)')
-     &	'removeCCd02d:REmove2:id:',id,
-     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
-		 write(*,*)
+c        write(*,'(a25,i5,1x,a5,L1,a5,2i2)')
+c     &	'removeCCd02d:REmove2:id:',id,
+c     &  ' Wrm:',WDYONRm(id),' Wsm:',WDYONSm(1,id),WDYONSm(2,id)
+c		 write(*,*)
         end if
 
 		end if!sicos
@@ -7900,9 +7900,9 @@ caug98
        end do !ipp
 
         if(testpr)then
-        write(*,'(a40,i5)')
-     &	'removeCCdot02d:END:ndot_smooth: ', ndot_smooth
-	    write(*,'(a30)')'* * * * * * * * *  * * * * * * * * '
+c        write(*,'(a40,i5)')
+c     &	'removeCCdot02d:END:ndot_smooth: ', ndot_smooth
+c	    write(*,'(a30)')'* * * * * * * * *  * * * * * * * * '
         end if
 
        return
@@ -8029,8 +8029,8 @@ cct
 	dtet=dacos(cosdt)
 
 	if(testpr)then
-	write(*,*)'arc_points:ATOMIJ:',IATOM,JATOM
-	write(*,*)'arc_points: tetmx, dtet=',tetmx,dtet
+c	write(*,*)'arc_points:ATOMIJ:',IATOM,JATOM
+c	write(*,*)'arc_points: tetmx, dtet=',tetmx,dtet
         end if
 
         arc_cross=0
@@ -8042,9 +8042,9 @@ cct
 	 if(one_side)arc_cross=0
 ctt
         if(testpr)then
-        write(*,*)'arc_points: hij,toler_cross:',
-     &  hij,toler_crossloc
-	    write(*,*)'one_side:',one_side,' arc_cross:',arc_cross
+c        write(*,*)'arc_points: hij,toler_cross:',
+c     &  hij,toler_crossloc
+c	    write(*,*)'one_side:',one_side,' arc_cross:',arc_cross
         end if
 
 	dtet2=dtet*0.5d0
@@ -8072,7 +8072,7 @@ ctt
 	if(narc.lt.1)goto 1001
 
          if(narc.gt.narcmx)then
-         write(*,*)'ERROR : sub: nrc_points , narcmx is small=',narcmx
+c         write(*,*)'ERROR : sub: nrc_points , narcmx is small=',narcmx
 	 stop
          end if
 
@@ -8126,17 +8126,17 @@ ctt
         stor=stor_ijs
 ctt
           if(testpr)then
-          write(*,*)'torus: arc_cross=',arc_cross
-          write(*,*)'putsmall = ',putsm
-          write(*,*)'dot_density=',dens
-          write(*,'(a50,3i5)')
-     &    'arc_points: on v0arc: narc,ni,nj=',
-     &    narc,ni,nj
-          write(*,*)'nn    x       y       z'
+c          write(*,*)'torus: arc_cross=',arc_cross
+c          write(*,*)'putsmall = ',putsm
+c          write(*,*)'dot_density=',dens
+c          write(*,'(a50,3i5)')
+c     &    'arc_points: on v0arc: narc,ni,nj=',
+c     &    narc,ni,nj
+c          write(*,*)'nn    x       y       z'
           do i=1,narc
-          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
+c          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
           end do !i
-          write(*,*)'analitical area(1radrot):stor-i,j=',stor_i,stor_j
+c          write(*,*)'analitical area(1radrot):stor-i,j=',stor_i,stor_j
           end if !testpr
 
         goto 1001
@@ -8170,11 +8170,11 @@ caug9831          if(arc_cross)then
 
 ctt
           if(testpr)then
-          write(*,*)'hij,rad_smooth probe=',hij,rad_sm
-          write(*,'(a30,3f10.6)')
-     &    'costi,costj,costsm=',costi,costj,costsm
-          write(*,'(a45,2f8.4)')
-     &   'arc_points:singular arc: psi,psj_xyz',psi_xyz(1),psj_xyz(1)
+c          write(*,*)'hij,rad_smooth probe=',hij,rad_sm
+c          write(*,'(a30,3f10.6)')
+c     &    'costi,costj,costsm=',costi,costj,costsm
+c          write(*,'(a45,2f8.4)')
+c     &   'arc_points:singular arc: psi,psj_xyz',psi_xyz(1),psj_xyz(1)
           end if
 
           pi05=pi*0.5d0
@@ -8227,11 +8227,11 @@ ctt
           ni = ni + ni_s   ! total points for iatom-arc
 
           if(testpr)then
-          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
-     &    (ni-ni_s),ni_s
-          write(*,*)'nn    x       y       z'
+c          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
+c     &    (ni-ni_s),ni_s
+c          write(*,*)'nn    x       y       z'
           do i=1,ni
-          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
+c          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
           end do !i
           end if !testpr
 
@@ -8270,11 +8270,11 @@ ctt
           nj = nj + ni_s   ! total points for jatom-arc
 
           if(testpr)then
-          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
-     &    (ni-ni_s),ni_s
-          write(*,*)'nn    x       y       z'
+c          write(*,*)'arc_points:singular arc:v0arc-iat: nisp,ni_sm=',
+c     &    (ni-ni_s),ni_s
+c          write(*,*)'nn    x       y       z'
           do i=1+ni,nj+ni
-          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
+c          write(*,'(i5,3f8.3)')i,(v0arc(k,i),k=1,3)
           end do !i
           end if !testpr
 
@@ -8291,9 +8291,9 @@ ctt
 
 ctt
         if(testpr)then
-        write(*,'(a60,3f8.5)')
-     &  'singul arc:analyt area(per 1rad):stor_i,smsph_i,stor_j',
-     &  stor_i,smsph_i,stor_j
+c        write(*,'(a60,3f8.5)')
+c     &  'singul arc:analyt area(per 1rad):stor_i,smsph_i,stor_j',
+c     &  stor_i,smsph_i,stor_j
         end if
 
 	end if !arc_cross .gt. 0 !aug9831
@@ -8313,8 +8313,8 @@ caug9831        rot_ang = RotAng(nsf+1)-RotAng(nsf)
 
 ctt
         if(testpr)then
-        write(*,'(a45,2i5,2x,f8.6)')'arc_point:nijs_face,isf,rot_ang0=',
-     &  nijs_face,isf,rot_ang0
+c        write(*,'(a45,2i5,2x,f8.6)')'arc_point:nijs_face,isf,rot_ang0=',
+c     &  nijs_face,isf,rot_ang0
         end if
 
         stor = stor + stor_ijs*rot_ang0
@@ -8323,7 +8323,7 @@ cttw
 caug9831          start_ang = RotAng(nsf) - RotAng(1)
 
         if(testpr)then
-        write(*,'(a30,f8.4)')'arc_point: start_ang =',start_ang
+c        write(*,'(a30,f8.4)')'arc_point: start_ang =',start_ang
         end if
 
         area_i=0.0d0
@@ -8359,7 +8359,7 @@ caug9831          start_ang = RotAng(nsf) - RotAng(1)
         end if !dfi gt drot_max
 ctt
         if(testpr)then
-        write(*,*)'arc_point:i=',i,' numb_rot:nr=',nr
+c        write(*,*)'arc_point:i=',i,' numb_rot:nr=',nr
         end if
 ctt
 
@@ -8385,7 +8385,7 @@ ctt
          ndotl=ndotl + 1
 
          if(ndotl.gt.ndotmx)then
-         write(*,*)'ERROR! call arc_points:no space, incrs ndotmx!!'
+c         write(*,*)'ERROR! call arc_points:no space, incrs ndotmx!!'
          stop
          end if
 
@@ -8437,11 +8437,11 @@ ctt
          end if !
 
          if(testpr)then
-	 write(*,'(a5,i3,a3,i5,a5,i3,a5,f6.3,1x,a4,3f6.3,a5,3f6.3)')
-     &   'rotj:',j,'id=',ndotl,'type:',dot_type(ndotl),
-     &   'area:',dot_area(ndotl),
-     &   ' xyz',(dot_xyz(k,ndotl),k=1,3),
-     &   'nvec=', (dot_vn(k,ndotl),k=1,3)
+c	 write(*,'(a5,i3,a3,i5,a5,i3,a5,f6.3,1x,a4,3f6.3,a5,3f6.3)')
+c     &   'rotj:',j,'id=',ndotl,'type:',dot_type(ndotl),
+c     &   'area:',dot_area(ndotl),
+c     &   ' xyz',(dot_xyz(k,ndotl),k=1,3),
+c     &   'nvec=', (dot_vn(k,ndotl),k=1,3)
          end if
 
          end do !j rotation
@@ -8451,12 +8451,12 @@ ctt
 
 ctt
          if(testpr)then
-         write(*,*)'arc_point: dot in loc xyz: saddle isf=',isf
-         write(*,*)'compare areas(anal vs num) arci,arcj,arcsm'
-         write(*,'(a18,2f12.8)')'stor_i,area_i',stor_i*rot_ang,area_i
-         write(*,'(a18,2f12.8)')'stor_j,area_j',stor_j*rot_ang,area_j
-         write(*,'(a35,3f12.8)')'smsphi*rot_ang,area_si,srea_sj',
-     &   smsph_i*rot_ang,area_si ,area_sj
+c         write(*,*)'arc_point: dot in loc xyz: saddle isf=',isf
+c         write(*,*)'compare areas(anal vs num) arci,arcj,arcsm'
+c         write(*,'(a18,2f12.8)')'stor_i,area_i',stor_i*rot_ang,area_i
+c         write(*,'(a18,2f12.8)')'stor_j,area_j',stor_j*rot_ang,area_j
+c         write(*,'(a35,3f12.8)')'smsphi*rot_ang,area_si,srea_sj',
+c     &   smsph_i*rot_ang,area_si ,area_sj
          end if
 
          end do !isf loop over faces
@@ -8545,11 +8545,11 @@ ctt
        distum2=distum**2
 
        if(testpr)then
-	   write(*,*)
-	   write(*,*)'in remove_ccdot03b: start ******************'
-       write(*,'(a48,6f8.3)')
-     & 'remove_ccdot03b:RP,rad_sm,distm,distm2,distum,distum2=',
-     & RP,rad_sm,distm,distm2,distum,distum2
+c	   write(*,*)
+c	   write(*,*)'in remove_ccdot03b: start ******************'
+c       write(*,'(a48,6f8.3)')
+c     & 'remove_ccdot03b:RP,rad_sm,distm,distm2,distum,distum2=',
+c     & RP,rad_sm,distm,distm2,distum,distum2
        end if
 
        NY = 0
@@ -8557,7 +8557,7 @@ ctt
        if(probe_WYONRm(i))then
        NY = NY + 1
        if(NY.gt.nprobmx_loc)then
-       write(*,*)'remove_ccdot03:ERROR: nprobmx_loc too small !!'
+c       write(*,*)'remove_ccdot03:ERROR: nprobmx_loc too small !!'
        stop
        end if
 
@@ -8568,17 +8568,17 @@ ctt
        end do !k
 
        if(testpr)then
-           write(*,'(a25,i6,1x,3f10.5)')
-     &     'DeepProb I, xyz =', i,(cprobe_ijk(k,i),k=1,3)
+c           write(*,'(a25,i6,1x,3f10.5)')
+c     &     'DeepProb I, xyz =', i,(cprobe_ijk(k,i),k=1,3)
        end if
 
        end if !probe_WYONRm
        end do !prob
 
        if(testpr)then
-       write(*,'(a40,i5,2x,a20,i5)')
-     & 'remove_cc03b:totalNprobePos=',nprobpost,
-     & ' found NYprobe=', NY
+c       write(*,'(a40,i5,2x,a20,i5)')
+c     & 'remove_cc03b:totalNprobePos=',nprobpost,
+c     & ' found NYprobe=', NY
        end if
 
        if(NY.le.1)goto 1000      !return
@@ -8589,7 +8589,7 @@ ctt
         npip=nconc_glb_nprpos(npi)
 
         if(testpr)then
-        write(*,*)'remove_cc03b: i,YON(i) = ', i,YON(i)
+c        write(*,*)'remove_cc03b: i,YON(i) = ', i,YON(i)
         end if
 
         if(.not.YON(i))goto 100
@@ -8603,9 +8603,9 @@ C:SIMS02: !next i this probe has been processed as j
 
 csep9802:
 	 if(testpr)then
-         write(*,'(a30,3f8.3)')'remove_ccdot03b:vpi1:',vpi1
-         write(*,'(a30,3f8.3)')'remove_ccdot03b:vpi2:',vpi2
-         write(*,'(a30,3f8.3)')'remove_ccdot03b:vpi3:',vpi3
+c         write(*,'(a30,3f8.3)')'remove_ccdot03b:vpi1:',vpi1
+c         write(*,'(a30,3f8.3)')'remove_ccdot03b:vpi2:',vpi2
+c         write(*,'(a30,3f8.3)')'remove_ccdot03b:vpi3:',vpi3
 	 end if
 
         j=i
@@ -8624,10 +8624,10 @@ csep9802:
 		 end do !k
 
 		 if(testpr)then
-         write(*,*)'remove_cc03b: npi,npj=',npi,npj
-         write(*,'(a10,3f10.4)')'Pi xyz=', PY(1,i),PY(2,i),PY(3,i)
-         write(*,'(a10,3f10.4)')'Pj xyz=', PY(1,j),PY(2,j),PY(3,j)
-     	 write(*,*)'Probes(gl) has eqvIJK:',nstor
+c         write(*,*)'remove_cc03b: npi,npj=',npi,npj
+c         write(*,'(a10,3f10.4)')'Pi xyz=', PY(1,i),PY(2,i),PY(3,i)
+c         write(*,'(a10,3f10.4)')'Pj xyz=', PY(1,j),PY(2,j),PY(3,j)
+c     	 write(*,*)'Probes(gl) has eqvIJK:',nstor
          end if
 
 		 if(nstor.ge.2) goto 200   !next j
@@ -8647,9 +8647,9 @@ csep9802:
 
          if(testpr)then
          distij = dsqrt(distij)
-         write(*,*)'remove_cc03b: probes can have intersection:'
-		 write(*,*)'pri,prj,distij,distmx:', i,j,distij,distm
-	     write(*,'(a10,3f8.3)')'p1pvec():',p1pvec
+c         write(*,*)'remove_cc03b: probes can have intersection:'
+c		 write(*,*)'pri,prj,distij,distmx:', i,j,distij,distm
+c	     write(*,'(a10,3f8.3)')'p1pvec():',p1pvec
          end if
 
          do k=1,3
@@ -8663,9 +8663,9 @@ csep9802:
          end do !k
 
 	     if(testpr)then
-         write(*,'(a30,3f8.3)')'remove_ccdot03b:upj1:',upj1
-         write(*,'(a30,3f8.3)')'remove_ccdot03b:upj2:',upj2
-         write(*,'(a30,3f8.3)')'remove_ccdot03b:upj3:',upj3
+c         write(*,'(a30,3f8.3)')'remove_ccdot03b:upj1:',upj1
+c         write(*,'(a30,3f8.3)')'remove_ccdot03b:upj2:',upj2
+c         write(*,'(a30,3f8.3)')'remove_ccdot03b:upj3:',upj3
 	     end if
 
          call inprizm(vpi1,vpi2,vpi3,upj1,inp1)
@@ -8673,8 +8673,8 @@ csep9802:
          if(.not.inp1)then !check another if not
 
 	  if(testpr)then
-	  write(*,'(a30)')'remove_ccdot03b: vj1 is OUT:'
-	  write(*,'(a20,f8.4,2x,L1)')'distu1, inp1 = ',distu1, inp1
+c	  write(*,'(a30)')'remove_ccdot03b: vj1 is OUT:'
+c	  write(*,'(a20,f8.4,2x,L1)')'distu1, inp1 = ',distu1, inp1
 	  end if
 
            call inprizm(vpi1,vpi2,vpi3,upj2,inp2)
@@ -8682,8 +8682,8 @@ csep9802:
             if(.not.inp2)then
 
 	  if(testpr)then
-	  write(*,'(a30)')'remove_ccdot03b: vj2 is OUT:'
-	  write(*,'(a20,f8.4,2x,L1)')'distu2, inp2 = ',distu2, inp2
+c	  write(*,'(a30)')'remove_ccdot03b: vj2 is OUT:'
+c	  write(*,'(a20,f8.4,2x,L1)')'distu2, inp2 = ',distu2, inp2
 	  end if
 
              call inprizm(vpi1,vpi2,vpi3,upj3,inp3)
@@ -8691,26 +8691,26 @@ csep9802:
              if(.not.inp3)then
 
 	  if(testpr)then
-	  write(*,'(a30)')'remove_ccdot03b: vj3 is OUT:'
-	  write(*,'(a20,f8.4,2x,L1)')'distu3, inp3 = ',distu3, inp3
+c	  write(*,'(a30)')'remove_ccdot03b: vj3 is OUT:'
+c	  write(*,'(a20,f8.4,2x,L1)')'distu3, inp3 = ',distu3, inp3
 	  end if
 
          call inprizm(upj1,upj2,upj3,vpi1,inp1)
          if(.not.inp1)then
 	  if(testpr)then
-	  write(*,'(a30)')'remove_ccdot03b: vi1 is OUT:'
+c	  write(*,'(a30)')'remove_ccdot03b: vi1 is OUT:'
 	  end if
 
            call inprizm(upj1,upj2,upj3,vpi2,inp2)
            if(.not.inp2)then
 	  if(testpr)then
-	  write(*,'(a30)')'remove_ccdot03b: vi2 is OUT:'
+c	  write(*,'(a30)')'remove_ccdot03b: vi2 is OUT:'
 	  end if
 
             call inprizm(upj1,upj2,upj3,vpi3,inp3)
              if(.not.inp3)then
 	  if(testpr)then
-	  write(*,'(a30)')'remove_ccdot03b: vi3 is OUT:'
+c	  write(*,'(a30)')'remove_ccdot03b: vi3 is OUT:'
 	  end if
 	     goto 200 !next j
 
@@ -8722,7 +8722,7 @@ csep9802:
              end if
 
 		   if(testpr)then
-           write(*,*)'remove_cc03b: probe i,j have intersected tringles'
+c           write(*,*)'remove_cc03b: probe i,j have intersected tringles'
            end if
 
 		do ip=1,2
@@ -8774,16 +8774,16 @@ csep9802:
         nsmoo = nsmoo + 1
 
         if(testpr)then
-        write(*,'(a30,3f10.5)')
-     & 'Smoothing if:Hsmmin<Hsm<dpp12 =', Hsmmin,Hsm,dpp12
-        write(*,'(a20,i3,i5,2x,3f8.4,1x,a16,2i3,1x,L1)')
-     &	'pi-dot:ip,id,xyz:',
-     &  ip,id,(dotcrdl(k,id),k=1,3),
-     &  ' WSm(2),WRm:',WDYONSm(1,id),WDYONSm(2,id),WDYONRm(id)
+c        write(*,'(a30,3f10.5)')
+c     & 'Smoothing if:Hsmmin<Hsm<dpp12 =', Hsmmin,Hsm,dpp12
+c        write(*,'(a20,i3,i5,2x,3f8.4,1x,a16,2i3,1x,L1)')
+c     &	'pi-dot:ip,id,xyz:',
+c     &  ip,id,(dotcrdl(k,id),k=1,3),
+c     &  ' WSm(2),WRm:',WDYONSm(1,id),WDYONSm(2,id),WDYONRm(id)
         end if
 
         if(ndot_smooth.gt.ndot_smmx)then
-        write(*,*)'ERROR:ndot_smoothmx is SMALL !!'
+c        write(*,*)'ERROR:ndot_smoothmx is SMALL !!'
         stop
         end if
 
@@ -8809,12 +8809,12 @@ csep9814        if(WDYON(id).and.(.not.WDYONRm(id)))then
         nrem = nrem + 1
 
         if(testpr)then
-        write(*,'(a30,2f10.5)')
-     & 'REmovimg if:Hsm>dpp12:', Hsm,dpp12
-        write(*,'(a20,i3,i5,2x,3f8.4,1x,a16,2i3,1x,L1)')
-     &	'pi-dot:ip,id,xyz:',
-     &  ip,id,(dotcrdl(k,id),k=1,3),
-     &  ' WSm(2),WRm:',WDYONSm(1,id),WDYONSm(2,id),WDYONRm(id)
+c        write(*,'(a30,2f10.5)')
+c     & 'REmovimg if:Hsm>dpp12:', Hsm,dpp12
+c        write(*,'(a20,i3,i5,2x,3f8.4,1x,a16,2i3,1x,L1)')
+c     &	'pi-dot:ip,id,xyz:',
+c     &  ip,id,(dotcrdl(k,id),k=1,3),
+c     &  ' WSm(2),WRm:',WDYONSm(1,id),WDYONSm(2,id),WDYONRm(id)
         end if
 
        end if !Hsm
@@ -8832,10 +8832,10 @@ csep9814        if(WDYON(id).and.(.not.WDYONRm(id)))then
 100    end do !i
 
        if(testpr)then
-       write(*,'(a48,2i6)')
-     & 'SIMS:remove_cc03b:N dots removed;to be smoothed ',
-     &  nrem,nsmoo
-	   write(*,*)'in remove_ccdot03b: finish'
+c       write(*,'(a48,2i6)')
+c     & 'SIMS:remove_cc03b:N dots removed;to be smoothed ',
+c     &  nrem,nsmoo
+c	   write(*,*)'in remove_ccdot03b: finish'
        end if
 
 1000   return
@@ -8874,8 +8874,8 @@ csep9814        if(WDYON(id).and.(.not.WDYONRm(id)))then
 		drm1=((1.0d0+OPT_dhole)*rad_sm)**2
 		kdist = (drm1-drm0)/rsm2
         if(testpr)then
-		write(*,*)'remove_sdsmp2: nsmp2tot:',nsmp2tot
-		write(*,*)'remove_sdsmp2: ndotsmp2:',ndotsmp2
+c		write(*,*)'remove_sdsmp2: nsmp2tot:',nsmp2tot
+c		write(*,*)'remove_sdsmp2: ndotsmp2:',ndotsmp2
 		end if
 		do id = 1,ndotsmp2
 		idgl = dotsmp2_dgl(id)
@@ -8883,20 +8883,20 @@ csep9814        if(WDYON(id).and.(.not.WDYONRm(id)))then
 		is = dotsmp2_nsm(id)
 
 		if(testpr)then
-		write(*,'(a34,3i5,1x,a8,3f7.3)')
-     &	'id,dotsmp2_nsm(id),dotsmp2_dgl(id):',
-     &  id,dotsmp2_nsm(id),idgl,
-     &  ' dotcrd:',(dotcrd(k,idgl),k=1,3)
-		write(*,'(a15,3f8.3)')
-     &	'smp2txyz(is):',(smp2txyz(k,is),k=1,3)
+c		write(*,'(a34,3i5,1x,a8,3f7.3)')
+c     &	'id,dotsmp2_nsm(id),dotsmp2_dgl(id):',
+c     &  id,dotsmp2_nsm(id),idgl,
+c     &  ' dotcrd:',(dotcrd(k,idgl),k=1,3)
+c		write(*,'(a15,3f8.3)')
+c     &	'smp2txyz(is):',(smp2txyz(k,is),k=1,3)
 		end if
 
     	do js = 1,nsmp2tot
 		if(is.ne.js)then
 
 		if(testpr)then
-		write(*,'(a15,i5,1x,3f8.3)')
-     &	'js, smp2txyz(js):',js,(smp2txyz(k,js),k=1,3)
+c		write(*,'(a15,i5,1x,3f8.3)')
+c     &	'js, smp2txyz(js):',js,(smp2txyz(k,js),k=1,3)
 		end if
 
          d = 0.0d0
@@ -8913,7 +8913,7 @@ csep9814        if(WDYON(id).and.(.not.WDYONRm(id)))then
 		 if(d.lt.drm)then
 		 WDYONRm(idgl)=.true.
 		 irem = irem +1
-		 if(testpr)write(*,*)'dot id,idgl removed:',id,idgl
+c		 if(testpr)write(*,*)'dot id,idgl removed:',id,idgl
 		 goto 1002
 		 end if !d.lt.drm
 
@@ -8924,7 +8924,7 @@ csep9814        if(WDYON(id).and.(.not.WDYONRm(id)))then
 		 end do !id
 
 		 if(testpr)then
-		 write(*,*)'remove_smp2: dotremooved:', irem
+c		 write(*,*)'remove_smp2: dotremooved:', irem
 		 end if
 
 	   call clust_smooth_dot(ndot_mx,ndotsmp2,
@@ -8975,7 +8975,7 @@ csep98
         nsmoothl = 0
 
 		if(testpr)then
-		write(*,*)'n sub:clast_smooth_dot: start:'
+c		write(*,*)'n sub:clast_smooth_dot: start:'
         end if
 	if(OPT_clastering)then  !sep9801
 	if(ndot_smooth.ge.2)then
@@ -8990,11 +8990,11 @@ csep98
 	if(.not.dotCdist(id).and. (.not.WDYONRm(idgl)))then
 
         if(testpr)then
-    	write(*,*)
-        write(*,'(a24,2i6)')'Close:idgl:',idgl
-        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
-     &  (dotcrd(k,idgl),k=1,3),
-     &  (dotnvec(k,idgl),k=1,3),dotarea(idgl)
+c    	write(*,*)
+c        write(*,'(a24,2i6)')'Close:idgl:',idgl
+c        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
+c     &  (dotcrd(k,idgl),k=1,3),
+c     &  (dotnvec(k,idgl),k=1,3),dotarea(idgl)
         end if !testpr
 
 	ndclose=0
@@ -9025,11 +9025,11 @@ csep98
         indxdclose(ndclose)=jdgl
 
         if(testpr)then
-        write(*,'(a24,2i6)')'CdotLst:jdgl,ndclose:',jdgl,ndclose
-    	write(*,'(a24,2f8.3)')'k*are, dist:',kdotclose*are,dist
-        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
-     &  (dotcrd(k,jdgl),k=1,3),
-     &  (dotnvec(k,jdgl),k=1,3),dotarea(jdgl)
+c        write(*,'(a24,2i6)')'CdotLst:jdgl,ndclose:',jdgl,ndclose
+c    	write(*,'(a24,2f8.3)')'k*are, dist:',kdotclose*are,dist
+c        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
+c     &  (dotcrd(k,jdgl),k=1,3),
+c     &  (dotnvec(k,jdgl),k=1,3),dotarea(jdgl)
         end if !testpr
 
     	end if !close dots
@@ -9063,10 +9063,10 @@ csep98
     	end if !ndclose.ge.1
 
         if(testpr)then
-        write(*,'(a24,2i6)')'FinAvClose:idgl:',idgl
-        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
-     &  (dotcrd(k,idgl),k=1,3),
-     &  (dotnvec(k,idgl),k=1,3),dotarea(idgl)
+c        write(*,'(a24,2i6)')'FinAvClose:idgl:',idgl
+c        write(*,'(a12,3f8.3,1x,3f8.3,1x,f6.3)')'dx,nv,are: ',
+c     &  (dotcrd(k,idgl),k=1,3),
+c     &  (dotnvec(k,idgl),k=1,3),dotarea(idgl)
         end if !testpr
 
     	end if!.not.dotCdist(id)
@@ -9075,7 +9075,7 @@ csep98
     	end if !OPT_clastering !sep9801
 
 		if(testpr)then
-		write(*,*)'n sub:clast_smooth_dot: finish'
+c		write(*,*)'n sub:clast_smooth_dot: finish'
         end if
 
 		 return
@@ -9455,7 +9455,7 @@ c
         integer ichash
 c
 	if(ictot.eq.nclist) then
-	  write(6,*)'charge list full- increase nclist'
+C	  write(6,*)'charge list full- increase nclist'
 	  stop
 	end if
 
@@ -9561,7 +9561,7 @@ c
 c check to see if there is room
 c
 	if(irtot.eq.nrlist) then
-	  write(6,*)' radii list full- increase nrlist'
+C	  write(6,*)' radii list full- increase nrlist'
 	  stop
 	end if
 

@@ -30,7 +30,7 @@ call_main = function(iresf, iresl, maxres, maxat){
   z = double(maxat)
   main_75 = .Fortran("main", resnum = as.integer(resnum), natm = as.integer(0),
                      x=as.double(rnorm(maxat)) ,y = as.double(rnorm(maxat)),
-                     z = as.double(rnorm(maxat)), iresf, iresl, PACKAGE = "fibos")
+                     z = as.double(rnorm(maxat)), iresf_1 = iresf, iresl_1 = iresl, PACKAGE = "fibos")
   return(main_75)
 }
 
@@ -48,27 +48,27 @@ execute = function(iresf, iresl, method, verbose){
     if(verbose == TRUE){
       print("executando main_intermediate")
     }
-    intermediate = .Fortran("main_intermediate", main_75$x, main_75$y,
-                            main_75$z, as.integer(ires), main_75$resnum,
-                            main_75$natm, PACKAGE = "fibos")
+    intermediate = .Fortran("main_intermediate", main_x = main_75$x, main_y = main_75$y,
+                            main_z = main_75$z, as.integer(ires), main_r = main_75$resnum,
+                            main_a = main_75$natm, PACKAGE = "fibos")
     if(verbose == TRUE){
       print("Executando main_intermediate 01")
     }
-    .Fortran("main_intermediate01",x=as.double(rnorm(maxat)),
+    intermediate01 = .Fortran("main_intermediate01",x=as.double(rnorm(maxat)),
              y = as.double(rnorm(maxat)),
-             z = as.double(rnorm(maxat)), as.integer(ires), main_75$resnum,
-             main_75$natm, PACKAGE = "fibos")
+             z = as.double(rnorm(maxat)), ires_1 = as.integer(ires), main_r = main_75$resnum,
+             main_a = main_75$natm, PACKAGE = "fibos")
     if(verbose == TRUE){
       print("Executando runSIMS")
     }
-    .Fortran("runSIMS", PACKAGE = "fibos", as.integer(method))
+    run = .Fortran("runSIMS", PACKAGE = "fibos", meth = as.integer(method))
     if(verbose == TRUE){
       print("Executando surfcal")
     }
-    .Fortran("surfcal", PACKAGE = "fibos")
+   surf =  .Fortran("surfcal", PACKAGE = "fibos")
   }
   if(verbose == TRUE){
     print("Executando main_intermediate02")
   }
-  .Fortran("main_intermediate02", as.integer(method),PACKAGE = "fibos")
+  intermediate02 = .Fortran("main_intermediate02", meth =  as.integer(method),PACKAGE = "fibos")
 }
