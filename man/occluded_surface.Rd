@@ -4,14 +4,12 @@
 \alias{occluded_surface}
 \title{Occluded Surface (OS)}
 \usage{
-occluded_surface(pdb, method = "FIBOS", verbose = FALSE)
+occluded_surface(pdb, method = "FIBOS")
 }
 \arguments{
 \item{pdb}{4-digit PDB id (will fetch it from the RCSB repository) or the path to a PDB local file.}
 
 \item{method}{Method to be used: OS (classic) or FIBOS (default).The classic OS covers the surface radially with one of the axes as a reference when allocating the dots. In FIBOS, Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.}
-
-\item{verbose}{only for debugging.}
 }
 \value{
 A table containing:
@@ -32,7 +30,6 @@ Occluded Surface (OS) (Pattabiraman et al. 1995) method distributes dots (repres
 For more details, see (Fleming et al, 2000) and (Soares, et al, 2024)
 }
 \examples{
-\donttest{
 library(fibos)
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
@@ -40,7 +37,6 @@ pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
 
 # Calculate OSP metric per residue from .srf file in fibos_files folder
 pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
-}
 
 }
 \references{
