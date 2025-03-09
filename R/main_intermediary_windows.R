@@ -24,7 +24,7 @@
 #'
 execute_windows = function(pdb, method){
   sys_info = Sys.info()
-  if(sys_info["sysname"] == "W"){
+  if(sys_info["sysname"] == "Windows"){
     python_code = glue::glue("import fibos;fibos.occluded_surface('{pdb}','{method}')")
     reticulate::py_run_string(python_code)
   }else{
@@ -44,7 +44,7 @@ execute_windows = function(pdb, method){
 
 osp_windows = function(file){
   sys_info = Sys.info()
-  if(sys_info["sysname"] == "W"){
+  if(sys_info["sysname"] == "Windows"){
     python_code = glue::glue("import fibos;fibos.osp('{file}')")
     reticulate::py_run_string(python_code)
   }else{
