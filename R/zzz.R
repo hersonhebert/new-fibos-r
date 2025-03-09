@@ -18,21 +18,16 @@
 #  reticulate::use_virtualenv("fibos_venv", required = TRUE)
 #}
 
+.fibos_env <- new.env(parent = emptyenv())
+
 .onLoad <- function(libname, pkgname) {
   if (!requireNamespace("reticulate", quietly = TRUE)) {
     stop("Reticulate not found.")
   }
-  sys_info = Sys.info()
-  if(sys_info["sysname"] == "W"){
-    if(!reticulate::virtualenv_exists("fibos_venv")){
-      reticulate::virtualenv_create("fibos_venv")
-    }
-    reticulate::use_virtualenv("fibos_venv")
-    if(!reticulate::py_module_available("fibos")){
-      reticulate::py_install("fibos")
-    }
-  }else{
-    reticulate::py_require("fibos")
-    fibos <<- reticulate::import("fibos", delay_load = TRUE)
-  }
+  reticulate::py_require("fibos")
+  .fibos_env$fibos <- reticulate::import("fibos", delay_load = TRUE)
+}
+
+fibos <- function() {
+  .fibos_env$fibos
 }
