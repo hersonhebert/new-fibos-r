@@ -34,8 +34,8 @@ execute_windows = function(pdb, method){
   if (tolower(fs::path_ext(pdb)) == "pdb") {
     pdb = fs::path_ext_remove(pdb)
   }
-  
-  prot = paste("prot_", pdb, sep = "")
+  prot = fs::path_file(pdb)
+  prot = paste("prot_", prot, sep = "")
   prot = fs::path_ext_set(prot, "srf")
   prot = fs::path("fibos_files", prot)
   
