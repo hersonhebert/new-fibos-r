@@ -36,6 +36,6 @@
   }
   else{
     reticulate::py_require("fibos")
-    fibos <<- reticulate::import("fibos", delay_load = TRUE)
+    fibos <- reticulate::import("fibos", delay_load = TRUE)
   }
 }

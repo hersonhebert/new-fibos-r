@@ -31,6 +31,7 @@
 #' Herson H. M. Soares, Joao P. R. Romanelli, Patrick J. Fleming, Carlos H. da Silveira. bioRxiv, 2024.11.01.621530. (\doi{10.1101/2024.11.01.621530})
 #'
 #' @examples
+#' \donttest{
 #' library(fibos)
 #'
 #' # Calculate FIBOS per atom and create .srf files in fibos_files folder
@@ -38,7 +39,7 @@
 #'
 #' # Calculate OSP metric per residue from .srf file in fibos_files folder
 #' pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
-#'
+#' }
 #' @export
 occluded_surface = function(pdb, method = "FIBOS"){
     return(execute_windows(pdb,method))

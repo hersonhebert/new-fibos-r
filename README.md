@@ -204,7 +204,7 @@ pdb_osp[[1]] |> utils::head(3) |> print()
 ```
 
 ### Case study:
-[Here](https://github.com/insilico-unifei/fibos-R-case-study-supp.git) we show a 
+[Here](https://github.com/insilico-unifei/fibos-R-case-study-supp) we show a 
 case study  (currently only in R), aiming to compare the packing density between experimentally 
 determined structures and the same structures predicted by AlphaFold (AF).
 
