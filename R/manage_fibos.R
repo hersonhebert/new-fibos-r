@@ -33,6 +33,7 @@
 #' @examples
 #' \donttest{
 #' library(fibos)
+#' 
 #'
 #' # Calculate FIBOS per atom and create .srf files in fibos_files folder
 #' pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
@@ -42,5 +43,16 @@
 #' }
 #' @export
 occluded_surface = function(pdb, method = "FIBOS"){
-    return(execute_windows(pdb,method))
+  
+  if(reticulate::virtualenv_exists("fibos_venv")){
+    reticulate::use_virtualenv("fibos_venv")
+    if(!reticulate::py_module_available("fibos")){
+      warning("Module python 'fibos' not available. Use 'fibos_config()' to install the module.")
+    }
+    else{
+      return(execute(pdb,method))
+    }
+  } else {
+    warning("The virtual environment 'fibos_venv' was not found. Please run 'fibos_config()' to configure it.")
+  }
 }

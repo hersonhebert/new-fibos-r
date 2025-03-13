@@ -22,13 +22,13 @@
 #' @author Patrick Fleming (Pat.Fleming@jhu.edu)
 
 #'
-execute_windows = function(pdb, method){
+execute = function(pdb, method){
   sys_info = Sys.info()
   if(sys_info["sysname"] == "Windows"){
     python_code = glue::glue("import fibos;fibos.occluded_surface('{pdb}','{method}')")
     reticulate::py_run_string(python_code)
   }else{
-    python = reticulate::import("fibos")
+    python = reticulate::import("fibos", delay_load = TRUE)
     python$occluded_surface(pdb, method)
   }
   if (tolower(fs::path_ext(pdb)) == "pdb") {
@@ -48,7 +48,7 @@ osp_windows = function(file){
     python_code = glue::glue("import fibos;fibos.osp('{file}')")
     reticulate::py_run_string(python_code)
   }else{
-    python = reticulate::import("fibos")
+    python = reticulate::import("fibos", delay_load = TRUE)
     result = python$osp(file)
   }
   file = fs::path_ext_remove(file)

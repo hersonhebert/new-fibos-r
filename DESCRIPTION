@@ -8,11 +8,9 @@ Authors@R: c(
             person("Patrick", "Fleming", email = "Pat.Fleming@jhu.edu", role = "aut"),
             person("Posit Software, PBC", role = c("cph", "fnd")))
 Maintainer: Herson Soares <hersonhebert@hotmail.com>
-Description: The fibos package contains the implementation of important 
-             methodologies for bioinformatics, the first being the Occluded
-             Surface, created by Patrick Fleming, and the second methodology, 
-             the Fibonacci Occluded Surface, created with a new approach to dot 
-             distribution on an atom.
+Description: The Occluded Surface (OS) algorithm is a widely used approach for 
+             analyzing atomic packing in biomolecules. Here, we introduce 'fibos', 
+             an R and Python package that extends the OS methodology.
 Depends: R (>= 3.3.0)
 License: GPL-3
 Encoding: UTF-8

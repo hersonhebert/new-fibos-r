@@ -26,6 +26,7 @@ A table containing:
 \donttest{
 library(fibos)
 
+
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
 pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
 # Calculate OSP metric per residue from .srf file in fibos_files folder
