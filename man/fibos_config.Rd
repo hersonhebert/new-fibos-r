@@ -6,10 +6,23 @@
 \usage{
 fibos_config()
 }
+\value{
+Invisible NULL. Called for its side effects.
+}
 \description{
-This function creates a Python virtual environment (on Windows) and installs the
+This function creates a Python virtual environment and installs the
 Python module 'fibos' required for the full functionality of this package.
+It handles different system configurations and ensures that the correct
+compiler paths are set.
 }
 \note{
 This function will install external software (a Python package) on your system.
+Administrator/sudo privileges might be required on some systems.
+}
+\examples{
+\dontrun{
+# Set up the Python environment and install the required module
+fibos_config()
+}
+
 }
