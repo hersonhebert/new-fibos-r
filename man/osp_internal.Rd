@@ -14,7 +14,7 @@ A data frame containing the OSP metric data read from the generated PAK file.
 }
 \description{
 Internal function to calculate the OSP metric from an SRF file.
-This function calls the Python implementation of the OSP calculation.
+This function calls the 'Python' implementation of the OSP calculation.
 }
 \author{
 Carlos Henrique da Silveira (carlos.silveira@unifei.edu.br)

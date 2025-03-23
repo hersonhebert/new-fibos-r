@@ -9,7 +9,7 @@ execute(pdb, method)
 \arguments{
 \item{pdb}{4-digit PDB id (will fetch it from the RCSB repository) or the path to a PDB local file.}
 
-\item{method}{Method to be used: OS (classic) or FIBOS (default). The classic OS covers the surface radially with one of the axes as a reference when allocating the dots. In FIBOS, Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.}
+\item{method}{Method to be used: 'OS' (classic) or 'FIBOS' (default). The classic 'OS' covers the surface radially with one of the axes as a reference when allocating the dots. In 'FIBOS', Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.}
 }
 \value{
 A data frame containing the protein surface data read from the generated SRF file.
@@ -17,8 +17,8 @@ A data frame containing the protein surface data read from the generated SRF fil
 \description{
 The function executes the implemented methods.
 Using this function, it is possible to calculate occluded areas
-through the traditional methodology, Occluded Surface, or by
-applying the Fibonacci OS methodology. At the end of the method
+through the traditional methodology, 'Occluded Surface', or by
+applying the 'Fibonacci OS' methodology. At the end of the method
 execution, the 'prot.srf' file is generated, and returned for
 the function. The data in this file refers to all contacts
 between atoms of molecules present in a protein's PDB.

@@ -15,15 +15,14 @@ A table containing:
 \item{\code{Resnum}}{residue id.}
 \item{\code{Resname}}{residue name.}
 \item{\code{OS}}{the summed areas of dots in residue.}
-\item{\code{`os*[1-raylen]`}}{OS areas weighted by (1-raylen). Raylen is the average lengths of normals normalized by 2.8 \eqn{\text{\AA}} (water diameter). So, raylen is a value between 0 and 1. A raylen close to 1 indicates worse packaging, and the OS will be reduced.}
+\item{\code{`os*[1-raylen]`}}{'OS' areas weighted by (1-raylen). Raylen is the average lengths of normals normalized by 2.8 \eqn{\text{\AA}} (water diameter). So, raylen is a value between 0 and 1. A raylen close to 1 indicates worse packaging, and the 'OS' will be reduced.}
 \item{\code{OSP}}{average occluded surface packing value (OSP) by residue.}
 }
 }
 \description{
-{Implements the occluded surface packing density metric (OSP) averaged by residue, as described in (Fleming and Richards 2000).}
+{Implements the 'occluded surface' packing density metric (OSP) averaged by residue, as described in (Fleming and Richards 2000).}
 }
 \examples{
-
 \donttest{
 library(fibos)
 
@@ -31,9 +30,9 @@ library(fibos)
 fibos_config() 
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
-pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
+pdb_fibos <- occluded_surface("1ptx", method = "FIBOS")
 # Calculate OSP metric per residue from .srf file in fibos_files folder
-pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
+pdb_osp <- osp(fs::path("fibos_files","prot_1ptx.srf"))
 }
 }
 \references{

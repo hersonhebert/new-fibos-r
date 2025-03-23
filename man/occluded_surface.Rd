@@ -9,7 +9,7 @@ occluded_surface(pdb, method = "FIBOS")
 \arguments{
 \item{pdb}{4-digit PDB id (will fetch it from the RCSB repository) or the path to a PDB local file.}
 
-\item{method}{Method to be used: 'OS' (classic) or 'FIBOS'(default).The classic OS covers the surface radially with one of the axes as a reference when allocating the dots. In 'FIBOS', Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.}
+\item{method}{Method to be used: 'OS' (classic) or 'FIBOS'(default).The classic 'OS' covers the surface radially with one of the axes as a reference when allocating the dots. In 'FIBOS', Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.}
 }
 \value{
 A table containing:
@@ -22,10 +22,10 @@ A table containing:
 }
 }
 \description{
-{The Occluded Surface (OS) algorithm is a widely used approach for analyzing atomic packing in biomolecules. Here, we introduce FIBOS, an R and Python package that extends the OS methodology with enhancements. The homonymous function 'occluded_surface' calculates OS per atom.}
+{The 'Occluded Surface (OS)' algorithm is a widely used approach for analyzing atomic packing in biomolecules. Here, we introduce 'FIBOS', an 'R' and 'Python' package that extends the 'OS' methodology with enhancements. The homonymous function 'occluded_surface' calculates 'OS' per atom.}
 }
 \details{
-Occluded Surface (OS) (Pattabiraman et al. 1995) method distributes dots (representing patches of area) across the atom surfaces. Each dot has a normal that extends until it reaches either a van der Waals surface of a neighboring atom (the dot is considered occluded) or covers a distance greater than the diameter of a water molecule (the dot is considered non-occluded and disregarded). Thus, with the summed areas of dots and the lengths of normals, it is possible to compose robust metrics capable of inferring the average packing density of atoms, residues, proteins, as well as any other group of biomolecules.
+'Occluded Surface (OS)' (Pattabiraman et al. 1995) method distributes dots (representing patches of area) across the atom surfaces. Each dot has a normal that extends until it reaches either a van der Waals surface of a neighboring atom (the dot is considered occluded) or covers a distance greater than the diameter of a water molecule (the dot is considered non-occluded and disregarded). Thus, with the summed areas of dots and the lengths of normals, it is possible to compose robust metrics capable of inferring the average packing density of atoms, residues, proteins, as well as any other group of biomolecules.
 
 For more details, see (Fleming et al, 2000) and (Soares, et al, 2024)
 }
@@ -37,10 +37,10 @@ library(fibos)
 fibos_config()
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
-pdb_fibos <- occluded_surface("8rxn", method = "FIBOS")
+pdb_fibos <- occluded_surface("1ptx", method = "FIBOS")
 
 # Calculate OSP metric per residue from .srf file in fibos_files folder
-pdb_osp <- osp(fs::path("fibos_files","prot_8rxn.srf"))
+pdb_osp <- osp(fs::path("fibos_files","prot_1ptx.srf"))
 }
 }
 \references{
