@@ -25,3 +25,8 @@ Administrator/sudo privileges might be required on some systems.
 fibos_config()
 }
 }
+\seealso{
+\code{\link[=occluded_surface]{occluded_surface()}}
+
+\code{\link[=osp]{osp()}}
+}

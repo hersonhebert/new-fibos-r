@@ -10,6 +10,9 @@
 #' Administrator/sudo privileges might be required on some systems.
 #'
 #' @return Invisible NULL. Called for its side effects.
+#' 
+#' @seealso [occluded_surface()]
+#' @seealso [osp()]
 #'
 #' @examples
 #' \donttest{

@@ -3,6 +3,7 @@
 #' 
 #' @param pdb 4-digit PDB id (will fetch it from the RCSB repository) or the path to a PDB local file.
 #' @param method Method to be used: 'OS' (classic) or 'FIBOS' (default). The classic 'OS' covers the surface radially with one of the axes as a reference when allocating the dots. In 'FIBOS', Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.
+#' @param density_dots Distribution density of atomic dots for surface occlusion calculation.
 #'
 #' @description The function executes the implemented methods.
 #'              Using this function, it is possible to calculate occluded areas
@@ -24,14 +25,14 @@
 #' @author Joao Paulo Roquim Romanelli (joaoromanelli@unifei.edu.br)
 #' @author Patrick Fleming (Pat.Fleming@jhu.edu)
 #'
-execute = function(pdb, method){
+execute = function(pdb, method, density_dots){
   sys_info = Sys.info()
   if(sys_info["sysname"] == "Windows"){
     python_code = glue::glue("import fibos;fibos.occluded_surface('{pdb}','{method}')")
     reticulate::py_run_string(python_code)
   }else{
     python = reticulate::import("fibos", delay_load = TRUE)
-    python$occluded_surface(pdb, method)
+    python$occluded_surface(pdb, method, density_dots)
   }
   if (tolower(fs::path_ext(pdb)) == "pdb") {
     pdb = fs::path_ext_remove(pdb)

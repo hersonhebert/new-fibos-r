@@ -4,12 +4,14 @@
 \alias{execute}
 \title{Surface Calculation}
 \usage{
-execute(pdb, method)
+execute(pdb, method, density_dots)
 }
 \arguments{
 \item{pdb}{4-digit PDB id (will fetch it from the RCSB repository) or the path to a PDB local file.}
 
 \item{method}{Method to be used: 'OS' (classic) or 'FIBOS' (default). The classic 'OS' covers the surface radially with one of the axes as a reference when allocating the dots. In 'FIBOS', Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.}
+
+\item{density_dots}{Distribution density of atomic dots for surface occlusion calculation.}
 }
 \value{
 A data frame containing the protein surface data read from the generated SRF file.

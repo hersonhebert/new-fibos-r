@@ -30,7 +30,7 @@ library(fibos)
 fibos_config() 
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
-pdb_fibos <- occluded_surface("1ptx", method = "FIBOS")
+pdb_fibos <- occluded_surface("1ptx", method = "FIBOS", density_dots = 5.0)
 # Calculate OSP metric per residue from .srf file in fibos_files folder
 pdb_osp <- osp(fs::path("fibos_files","prot_1ptx.srf"))
 }

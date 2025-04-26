@@ -4,12 +4,14 @@
 \alias{occluded_surface}
 \title{Occluded Surface (OS)}
 \usage{
-occluded_surface(pdb, method = "FIBOS")
+occluded_surface(pdb, method = "FIBOS", density_dots = 5)
 }
 \arguments{
 \item{pdb}{4-digit PDB id (will fetch it from the RCSB repository) or the path to a PDB local file.}
 
 \item{method}{Method to be used: 'OS' (classic) or 'FIBOS'(default).The classic 'OS' covers the surface radially with one of the axes as a reference when allocating the dots. In 'FIBOS', Fibonacci spirals were used to allocate the dots, which is known to produce lower axial anisotropy as well as more evenly spaced points on a sphere.}
+
+\item{density_dots}{Distribution density of atomic dots for surface occlusion calculation.}
 }
 \value{
 A table containing:
@@ -37,7 +39,7 @@ library(fibos)
 fibos_config()
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
-pdb_fibos <- occluded_surface("1ptx", method = "FIBOS")
+pdb_fibos <- occluded_surface("1ptx", method = "FIBOS", density_dots = 5.0)
 
 # Calculate OSP metric per residue from .srf file in fibos_files folder
 pdb_osp <- osp(fs::path("fibos_files","prot_1ptx.srf"))
