@@ -151,7 +151,7 @@ fibos_config()
 library(fibos)
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
-pdb_fibos <- occluded_surface("1fib", method = "FIBOS")
+pdb_fibos <- occluded_surface("1fib", method = "FIBOS", density_dots = 5.0)
 
 # Show first 3 rows of pdb_fibos table
 pdb_fibos |> utils::head(3) |> print()
@@ -210,7 +210,7 @@ if (ideal_cores > 0) options(mc.cores = ideal_cores)
 # Create .srf files in fibos_files folder
 # Return FIBOS tables in pdb_fibos list
 if (ideal_cores > 1) future::plan(multisession, workers = ideal_cores)
-pdb_fibos <- pdb_paths |> furrr::future_map(\(x) occluded_surface(x, method = "FIBOS"), 
+pdb_fibos <- pdb_paths |> furrr::future_map(\(x) occluded_surface(x, method = "FIBOS", density_dots = 5.0), 
                                             .options = furrr_options(seed = 123))
 # Recover default "mc.cores"
 if (ideal_cores > 0) options(mc.cores = default_cores)
