@@ -13,7 +13,7 @@ the use of Fibonacci spirals for surface point distribution. This modification r
 ensures a more uniform and even distribution of surface dots, improving the accuracy
 of the algorithm.
 
-Python fibos version: https://github.com/insilico-unifei/fibos-py.git.
+Python fibos version [PyPI](https://pypi.org/project/fibos/).
 
 ## Operating Systems
 
