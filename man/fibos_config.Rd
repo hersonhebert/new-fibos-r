@@ -6,9 +6,6 @@
 \usage{
 fibos_config()
 }
-\value{
-Invisible NULL. Called for its side effects.
-}
 \description{
 This function creates a 'Python' virtual environment and installs the
 'Python' module 'fibos' required for the full functionality of this package.
