@@ -9,7 +9,6 @@
 #' @note This function will install external software (a 'Python' package) on your system.
 #' Administrator/sudo privileges might be required on some systems.
 #'
-#' @return Invisible NULL. Called for its side effects.
 #' 
 #' @seealso [occluded_surface()]
 #' @seealso [osp()]
