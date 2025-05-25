@@ -22,4 +22,3 @@ Imports:
     tidyr,
     reticulate,
     glue
-NeedsCompilation: yes
