@@ -26,14 +26,8 @@
 #' @author Patrick Fleming (Pat.Fleming@jhu.edu)
 #'
 execute = function(pdb, method, density_dots){
-  sys_info = Sys.info()
-  if(sys_info["sysname"] == "Windows"){
-    python_code = glue::glue("import fibos;fibos.occluded_surface('{pdb}','{method}')")
-    reticulate::py_run_string(python_code)
-  }else{
     python = reticulate::import("fibos", delay_load = TRUE)
-    python$occluded_surface(pdb, method, density_dots)
-  }
+    dados = python$occluded_surface(pdb, method, density_dots)
   if (tolower(fs::path_ext(pdb)) == "pdb") {
     pdb = fs::path_ext_remove(pdb)
   }
@@ -64,14 +58,8 @@ execute = function(pdb, method, density_dots){
 #' @author Patrick Fleming (Pat.Fleming@jhu.edu)
 
 osp_internal = function(file){
-  sys_info = Sys.info()
-  if(sys_info["sysname"] == "Windows"){
-    python_code = glue::glue("import fibos;fibos.osp('{file}')")
-    reticulate::py_run_string(python_code)
-  }else{
-    python = reticulate::import("fibos", delay_load = TRUE)
-    result = python$osp(file)
-  }
+  python = reticulate::import("fibos", delay_load = TRUE)
+  result = python$osp(file)
   file = fs::path_ext_remove(file)
   file = fs::path_ext_set(file,"pak")
   return(read_osp(file))

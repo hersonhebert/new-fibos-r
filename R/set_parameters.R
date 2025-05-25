@@ -34,15 +34,9 @@ get_radii = function(){
       warning("Module 'python' 'fibos' not available. Use 'fibos_config()' to install the module.")
     }
     else{
-      sys_info = Sys.info()
-      if(sys_info["sysname"] == "Windows"){
-            python_code = glue::glue("import fibos;fibos.occluded_surface('{pdb}','{method}')")
-            reticulate::py_run_string(python_code)
-      }else{
         python = reticulate::import("fibos", delay_load = TRUE)
         radii = dplyr::as_tibble(python$get_radii())
-      }
-      return(radii)
+        return(radii)
     }
   } else {
     warning("The virtual environment fibos_venv was not found. Please run 'fibos_config()' to configure it.")
@@ -89,14 +83,8 @@ set_radii = function(radii_values){
       warning("Module 'python' 'fibos' not available. Use 'fibos_config()' to install the module.")
     }
     else{
-      sys_info = Sys.info()
-      if(sys_info["sysname"] == "Windows"){
-        python_code = glue::glue("import fibos;fibos.osp('{file}')")
-        reticulate::py_run_string(python_code)
-      }else{
         python = reticulate::import("fibos", delay_load = TRUE)
         python$set_radii(radii_values)
-      }
     }
   } else {
     warning("The virtual environment fibos_venv was not found. Please run 'fibos_config()' to configure it.")
@@ -146,14 +134,8 @@ reset_radii = function(){
       warning("Module 'python' 'fibos' not available. Use 'fibos_config()' to install the module.")
     }
     else{
-      sys_info = Sys.info()
-      if(sys_info["sysname"] == "Windows"){
-        python_code = glue::glue("import fibos;fibos.osp('{file}')")
-        reticulate::py_run_string(python_code)
-      }else{
         python = reticulate::import("fibos", delay_load = TRUE)
         python$reset_radii()
-      }
     }
   } else {
     warning("The virtual environment fibos_venv was not found. Please run 'fibos_config()' to configure it.")
