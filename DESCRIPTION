@@ -1,6 +1,6 @@
 Package: fibos
 Title: Occlusion Surface Using the Occluded Surface and Fibonacci Occluded Surface
-Version: 2.0.0
+Version: 2.0.1
 Authors@R: c(
             person("Herson", "Soares", email = "hersonhebert@hotmail.com", role = c("cre","aut")),
             person("Carlos", "Silveira", email = "carlos.silveira@unifei.edu.br", role = "aut"),
