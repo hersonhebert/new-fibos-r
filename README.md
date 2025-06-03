@@ -115,7 +115,7 @@ install_github("https://github.com/insilico-unifei/fibos-R.git")
 
 1.  **`occluded_surface(pdb, method = "FIBOS")`**: Implements the Occluded Surface 
 algorithm, generating points, areas, and normals for each atom. As parameters it 
-accepts a PDB id (or the path to a local PDB file) and a method selection —  — either 
+accepts a PDB id (or the path to a local PDB file) and a method selection — either 
 the classic 'OS' or the default 'FIBOS' and the density dots values. The function returns the results as a table 
 and creates a file named `prot_PDBid.srf` in the `fibos_file` directory.
 
@@ -151,7 +151,7 @@ fibos_config()
 library(fibos)
 
 # Calculate FIBOS per atom and create .srf files in fibos_files folder
-pdb_fibos <- occluded_surface("1fib", method = "FIBOS", density_dots = 5.0)
+pdb_fibos <- occluded_surface("1fib", method = "FIBOS")
 
 # Show first 3 rows of pdb_fibos table
 pdb_fibos |> utils::head(3) |> print()
@@ -210,7 +210,7 @@ if (ideal_cores > 0) options(mc.cores = ideal_cores)
 # Create .srf files in fibos_files folder
 # Return FIBOS tables in pdb_fibos list
 if (ideal_cores > 1) future::plan(multisession, workers = ideal_cores)
-pdb_fibos <- pdb_paths |> furrr::future_map(\(x) occluded_surface(x, method = "FIBOS", density_dots = 5.0), 
+pdb_fibos <- pdb_paths |> furrr::future_map(\(x) occluded_surface(x, method = "FIBOS"), 
                                             .options = furrr_options(seed = 123))
 # Recover default "mc.cores"
 if (ideal_cores > 0) options(mc.cores = default_cores)
