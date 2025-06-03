@@ -31,7 +31,7 @@ Tested on:
 
 ## R versions
 
-Tested on: 4.4.1, 4.4.2
+Tested on: 4.4.1, 4.4.2, 4.5.0
 
 ## Instalations
 
