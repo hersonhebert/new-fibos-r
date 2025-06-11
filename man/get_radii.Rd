@@ -15,14 +15,14 @@ radii values used for surface-occlusion calculations. The values
 it returns are those currently employed in those calculations.
 }
 \examples{
+\donttest{
 library(fibos)
-#If the environment has not yet been configured, you must execute 'fibos_config()' before proceeding.
-
+fibos_config()
 #Loads the radius values that have been configured for code execution.
 radii = get_radii()
 #Displays the first three lines.
 radii |> utils::head(3) |> print()
-
+}
 
 }
 \seealso{

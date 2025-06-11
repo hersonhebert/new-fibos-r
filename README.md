@@ -31,7 +31,7 @@ Tested on:
 
 ## R versions
 
-Tested on: 4.4.1, 4.4.2, 4.5.0
+Tested on: 4.4.1, 4.4.2
 
 ## Instalations
 
@@ -128,7 +128,7 @@ virtual environment and installing the package. This function must be run before
 using any other functionality, as the remaining functions depend on it and will 
 not work otherwise.
 
-4.  **`get_radii()`**: Returns the Van der Waals radii values employed in the 
+4.  **`get_radii()`**: Returns the van der Waals radii values employed in the 
 surface occlusion calculations. These are the values used in each computation.
 
 5.  **`set_radii(radii_values)`**: Enables customization of the radii values used

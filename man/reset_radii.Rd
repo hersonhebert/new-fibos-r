@@ -10,9 +10,9 @@ reset_radii()
 This function reloads the 'OS' default atomic radii values.
 }
 \examples{
+\donttest{
 library(fibos)
-#If the environment has not yet been configured, you must execute 'fibos_config()' before proceeding.
-
+fibos_config()
 #Loads the radius values that have been configured for code execution.
 radii = get_radii()
 #Displays the first three lines.
@@ -27,7 +27,7 @@ get_radii() |> utils::head(3) |> print()
 reset_radii()
 #Displays the first three lines.
 get_radii() |> utils::head(3) |> print()
-
+}
 }
 \seealso{
 \code{\link[=get_radii]{get_radii()}}

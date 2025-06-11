@@ -14,10 +14,9 @@ This function enables modification of the radius values by
 passing a 'data.frame' as an argument.
 }
 \examples{
+\donttest{
 library(fibos)
-
-#If the environment has not yet been configured, you must execute 'fibos_config()' before proceeding.
-
+fibos_config()
 #Loads the radius values that have been configured for code execution.
 radii = get_radii()
 #Displays the first three lines.
@@ -28,6 +27,7 @@ radii$RAY[1] = 2.15
 set_radii(radii)
 #Displays the first three lines.
 get_radii() |> utils::head(3) |> print()
+}
 }
 \seealso{
 \code{\link[=get_radii]{get_radii()}}

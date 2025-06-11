@@ -17,14 +17,14 @@
 #' @author Patrick Fleming (Pat.Fleming@jhu.edu)
 #' 
 #' @examples
+#' \donttest{
 #' library(fibos)
-#' #If the environment has not yet been configured, you must execute 'fibos_config()' before proceeding.
-#' 
+#' fibos_config()
 #' #Loads the radius values that have been configured for code execution.
 #' radii = get_radii()
 #' #Displays the first three lines.
 #' radii |> utils::head(3) |> print()
-#' 
+#' }
 #' 
 #' @export
 get_radii = function(){
@@ -46,7 +46,7 @@ get_radii = function(){
 #' @title Change Radii Values
 #' @name set_radii
 #' 
-#' @param radii_values A 'data.frame' containing atomic radii values.
+#' @param radii_table A 'data.frame' containing atomic radii values.
 #'
 #' @description This function enables modification of the radius values by 
 #'              passing a 'data.frame' as an argument.
@@ -59,10 +59,9 @@ get_radii = function(){
 #' @author Joao Paulo Roquim Romanelli (joaoromanelli@unifei.edu.br)
 #' @author Patrick Fleming (Pat.Fleming@jhu.edu)
 #' @examples
+#' \donttest{
 #' library(fibos)
-#' 
-#' #If the environment has not yet been configured, you must execute 'fibos_config()' before proceeding.
-#' 
+#' fibos_config()
 #' #Loads the radius values that have been configured for code execution.
 #' radii = get_radii()
 #' #Displays the first three lines.
@@ -73,10 +72,10 @@ get_radii = function(){
 #' set_radii(radii)
 #' #Displays the first three lines.
 #' get_radii() |> utils::head(3) |> print()
-
+#' }
 #' @export
 
-set_radii = function(radii_values){
+set_radii = function(radii_table){
   if(reticulate::virtualenv_exists("fibos_venv")){
     reticulate::use_virtualenv("fibos_venv")
     if(!reticulate::py_module_available("fibos")){
@@ -84,7 +83,7 @@ set_radii = function(radii_values){
     }
     else{
         python = reticulate::import("fibos", delay_load = TRUE)
-        python$set_radii(radii_values)
+        python$set_radii(radii_table)
     }
   } else {
     warning("The virtual environment fibos_venv was not found. Please run 'fibos_config()' to configure it.")
@@ -107,9 +106,9 @@ set_radii = function(radii_values){
 #' @author Patrick Fleming (Pat.Fleming@jhu.edu)
 #' 
 #' @examples
+#' \donttest{
 #' library(fibos)
-#' #If the environment has not yet been configured, you must execute 'fibos_config()' before proceeding.
-#' 
+#' fibos_config()
 #' #Loads the radius values that have been configured for code execution.
 #' radii = get_radii()
 #' #Displays the first three lines.
@@ -124,7 +123,7 @@ set_radii = function(radii_values){
 #' reset_radii()
 #' #Displays the first three lines.
 #' get_radii() |> utils::head(3) |> print()
-#' 
+#' }
 #' @export
 
 reset_radii = function(){
